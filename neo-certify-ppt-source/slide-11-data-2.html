@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="col" style="width: 1920px; height: 1080px; background: #fefaee; padding: 96px 140px; margin: 0; box-sizing: border-box;">
+
+  <!-- 제목 -->
+  <div class="fit" style="margin-bottom: 48px;">
+    <p style="font-size: 36px; font-weight: 700; color: #0d0c09; margin: 0 0 16px 0;">05 데이터 구조 - 트랜잭션 테이블</p>
+    <div style="width: 160px; height: 2px; background: #0d0c09;"></div>
+  </div>
+
+  <div class="col fill-height" style="gap: 32px;">
+
+    <!-- 상단: 출고 관련 -->
+    <div class="row" style="flex: 1; gap: 32px;">
+
+      <!-- shipment_batches -->
+      <div class="col" style="flex: 1; background: #fff; border-radius: 16px; border: 4px solid #0d0c09; overflow: hidden;">
+        <div style="padding: 20px 28px; background: #0d0c09;">
+          <p style="font-size: 22px; font-weight: 700; color: #fefaee; margin: 0;">shipment_batches</p>
+          <p style="font-size: 16px; color: #94938c; margin: 4px 0 0 0;">출고 뭉치</p>
+        </div>
+        <div class="col" style="padding: 20px 28px; gap: 8px; flex: 1;">
+          <p style="font-size: 18px; color: #4a4944; margin: 0; font-family: monospace;">from_organization_id</p>
+          <p style="font-size: 18px; color: #4a4944; margin: 0; font-family: monospace;">to_organization_id</p>
+          <p style="font-size: 18px; color: #4a4944; margin: 0; font-family: monospace;">shipment_date</p>
+          <p style="font-size: 18px; color: #4a4944; margin: 0; font-family: monospace;">is_recalled, recall_reason</p>
+          <p style="font-size: 18px; color: #4a4944; margin: 0; font-family: monospace;">is_return_batch, parent_batch_id</p>
+        </div>
+      </div>
+
+      <!-- 관계 표시 -->
+      <div class="col" style="justify-content: center; gap: 8px;">
+        <svg width="48" height="40" viewBox="0 0 24 20">
+          <line x1="0" y1="10" x2="20" y2="10" stroke="#0d0c09" stroke-width="1.5"/>
+          <polygon points="20,6 24,10 20,14" fill="#0d0c09"/>
+        </svg>
+        <p style="font-size: 16px; color: #94938c; margin: 0;">1:N</p>
+      </div>
+
+      <!-- shipment_details -->
+      <div class="col" style="flex: 0.8; background: #fff; border-radius: 16px; border: 4px solid #ccc9c0; overflow: hidden;">
+        <div style="padding: 20px 28px; background: #f5f4ef; border-bottom: 2px solid #e0ddd4;">
+          <p style="font-size: 22px; font-weight: 700; color: #0d0c09; margin: 0;">shipment_details</p>
+          <p style="font-size: 16px; color: #94938c; margin: 4px 0 0 0;">출고 상세 (코드 매핑)</p>
+        </div>
+        <div class="col" style="padding: 20px 28px; gap: 8px; flex: 1;">
+          <p style="font-size: 18px; color: #4a4944; margin: 0; font-family: monospace;">shipment_batch_id</p>
+          <p style="font-size: 18px; color: #4a4944; margin: 0; font-family: monospace;">virtual_code_id</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 하단: 시술 + 폐기 -->
+    <div class="row" style="flex: 1; gap: 32px;">
+
+      <!-- treatment_records -->
+      <div class="col" style="flex: 1; background: #fff; border-radius: 16px; border: 4px solid #0d0c09; overflow: hidden;">
+        <div style="padding: 20px 28px; background: #0d0c09;">
+          <p style="font-size: 22px; font-weight: 700; color: #fefaee; margin: 0;">treatment_records</p>
+          <p style="font-size: 16px; color: #94938c; margin: 4px 0 0 0;">시술 기록</p>
+        </div>
+        <div class="col" style="padding: 20px 28px; gap: 8px; flex: 1;">
+          <p style="font-size: 18px; color: #4a4944; margin: 0; font-family: monospace;">hospital_id</p>
+          <p style="font-size: 18px; color: #4a4944; margin: 0; font-family: monospace;">patient_phone <span style="color: #94938c;">(정규화)</span></p>
+          <p style="font-size: 18px; color: #4a4944; margin: 0; font-family: monospace;">treatment_date</p>
+          <p style="font-size: 18px; color: #4a4944; margin: 0; font-family: monospace;">is_recalled</p>
+        </div>
+      </div>
+
+      <!-- 관계 -->
+      <div class="col" style="justify-content: center; gap: 8px;">
+        <svg width="48" height="40" viewBox="0 0 24 20">
+          <line x1="0" y1="10" x2="20" y2="10" stroke="#0d0c09" stroke-width="1.5"/>
+          <polygon points="20,6 24,10 20,14" fill="#0d0c09"/>
+        </svg>
+        <p style="font-size: 16px; color: #94938c; margin: 0;">1:N</p>
+      </div>
+
+      <!-- treatment_details -->
+      <div class="col" style="flex: 0.6; background: #fff; border-radius: 16px; border: 4px solid #ccc9c0; overflow: hidden;">
+        <div style="padding: 20px 28px; background: #f5f4ef; border-bottom: 2px solid #e0ddd4;">
+          <p style="font-size: 22px; font-weight: 700; color: #0d0c09; margin: 0;">treatment_details</p>
+        </div>
+        <div class="col" style="padding: 20px 28px; gap: 8px; flex: 1;">
+          <p style="font-size: 18px; color: #4a4944; margin: 0; font-family: monospace;">treatment_id</p>
+          <p style="font-size: 18px; color: #4a4944; margin: 0; font-family: monospace;">virtual_code_id</p>
+        </div>
+      </div>
+
+      <!-- 구분선 -->
+      <div style="width: 2px; background: #e0ddd4;"></div>
+
+      <!-- disposal_records -->
+      <div class="col" style="flex: 1; background: #fff; border-radius: 16px; border: 4px solid #0d0c09; overflow: hidden;">
+        <div style="padding: 20px 28px; background: #0d0c09;">
+          <p style="font-size: 22px; font-weight: 700; color: #fefaee; margin: 0;">disposal_records</p>
+          <p style="font-size: 16px; color: #94938c; margin: 4px 0 0 0;">폐기 기록</p>
+        </div>
+        <div class="col" style="padding: 20px 28px; gap: 8px; flex: 1;">
+          <p style="font-size: 18px; color: #4a4944; margin: 0; font-family: monospace;">hospital_id</p>
+          <p style="font-size: 18px; color: #4a4944; margin: 0; font-family: monospace;">disposal_date</p>
+          <p style="font-size: 18px; color: #4a4944; margin: 0; font-family: monospace;">disposal_reason_type</p>
+          <p style="font-size: 18px; color: #4a4944; margin: 0; font-family: monospace;">disposal_reason_custom</p>
+        </div>
+      </div>
+
+      <!-- 관계 -->
+      <div class="col" style="justify-content: center; gap: 8px;">
+        <svg width="48" height="40" viewBox="0 0 24 20">
+          <line x1="0" y1="10" x2="20" y2="10" stroke="#0d0c09" stroke-width="1.5"/>
+          <polygon points="20,6 24,10 20,14" fill="#0d0c09"/>
+        </svg>
+        <p style="font-size: 16px; color: #94938c; margin: 0;">1:N</p>
+      </div>
+
+      <!-- disposal_details -->
+      <div class="col" style="flex: 0.6; background: #fff; border-radius: 16px; border: 4px solid #ccc9c0; overflow: hidden;">
+        <div style="padding: 20px 28px; background: #f5f4ef; border-bottom: 2px solid #e0ddd4;">
+          <p style="font-size: 22px; font-weight: 700; color: #0d0c09; margin: 0;">disposal_details</p>
+        </div>
+        <div class="col" style="padding: 20px 28px; gap: 8px; flex: 1;">
+          <p style="font-size: 18px; color: #4a4944; margin: 0; font-family: monospace;">disposal_id</p>
+          <p style="font-size: 18px; color: #4a4944; margin: 0; font-family: monospace;">virtual_code_id</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- 하단 설명 -->
+  <div style="margin-top: 32px; padding: 20px 32px; background: #fff; border-radius: 12px; border: 2px solid #e0ddd4;">
+    <p style="font-size: 20px; color: #4a4944; margin: 0;">
+      <strong style="color: #0d0c09;">패턴:</strong> 모든 트랜잭션은 Header(records/batches) + Detail(details) 구조.
+      Detail은 virtual_codes와 N:1 관계로 개별 코드 추적
+    </p>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+:root {
+  /* Surface: 따뜻한 크림 배경 */
+  --color-surface: #fefaee;
+  --color-surface-foreground: #0d0c09;
+  
+  /* Primary: 다크 블랙 */
+  --color-primary: #0d0c09;
+  --color-primary-foreground: #fefaee;
+  
+  /* Secondary: 미디엄 그레이 */
+  --color-secondary: #4a4944;
+  --color-secondary-foreground: #fefaee;
+  
+  /* Muted: 라이트 그레이 */
+  --color-muted: #94938c;
+  --color-muted-foreground: #0d0c09;
+  
+  /* Border: 연한 그레이 */
+  --color-border: #ccc9c0;
+  
+  /* Accent: 미디엄 그레이 */
+  --color-accent: #4a4944;
+  --color-accent-foreground: #fefaee;
+  
+  /* Typography */
+  --font-family-display: Arial, sans-serif;
+  --font-family-content: Arial, sans-serif;
+  --font-weight-display: 700;
+  --font-weight-content: 400;
+}
+
+/* Layout Classes */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+}
+
+.fit {
+  flex: 0 0 auto;
+}
+
+.fill-height {
+  flex: 1 1 0;
+  min-height: 0;
+}

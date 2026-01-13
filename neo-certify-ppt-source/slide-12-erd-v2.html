@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 1920px;
+      height: 1080px;
+      background: #fefaee;
+      padding: 48px 72px;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .table-box {
+      position: absolute;
+      background: #fff;
+      border: 2px solid #94938c;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.08);
+    }
+    .table-header {
+      background: #e8e6e0;
+      padding: 10px 16px;
+      border-bottom: 2px solid #94938c;
+      font-size: 20px;
+      font-weight: 600;
+      color: #0d0c09;
+    }
+    .table-body { padding: 8px 0; }
+    .table-row {
+      display: flex;
+      padding: 6px 16px;
+      font-size: 16px;
+      line-height: 1.4;
+    }
+    .field-name { flex: 1; color: #0d0c09; white-space: nowrap; overflow: hidden; }
+    .field-type { color: #4a4944; text-align: right; width: 120px; flex-shrink: 0; white-space: nowrap; }
+    .pk { font-weight: 600; }
+    .fk { font-style: italic; color: #2563eb; }
+
+    /* 색상 테마 */
+    .theme-core .table-header { background: #fef3c7; }
+    .theme-core { border: 4px solid #f59e0b; }
+    .theme-shipment .table-header { background: #dbeafe; }
+    .theme-shipment { border-color: #2563eb; }
+    .theme-treatment .table-header { background: #dcfce7; }
+    .theme-treatment { border-color: #16a34a; }
+    .theme-history .table-header { background: #dcfce7; }
+    .theme-history { border-color: #16a34a; }
+  </style>
+</head>
+<body>
+
+  <!-- 제목 -->
+  <div style="margin-bottom: 20px;">
+    <p style="font-size: 36px; font-weight: 700; color: #0d0c09; margin: 0 0 12px 0;">06 데이터 구조 — ERD (Entity Relationship Diagram)</p>
+    <div style="width: 160px; height: 2px; background: #0d0c09;"></div>
+  </div>
+
+  <!-- ERD 컨테이너 (흰 박스) -->
+  <div id="erd-container" style="position: relative; width: 1776px; height: 840px; background: #fff; border: 2px solid #ccc9c0; border-radius: 8px; overflow: hidden;">
+
+    <!-- SVG 연결선 -->
+    <svg width="1776" height="840" style="position: absolute; top: 0; left: 0;">
+      <!-- ========== Row 1: 마스터 데이터 계층 (1:N) ========== -->
+      <!-- organizations → products -->
+      <line x1="300" y1="140" x2="336" y2="140" stroke="#0d0c09" stroke-width="3"/>
+      <circle cx="300" cy="140" r="6" fill="#0d0c09"/>
+      <polygon points="328,134 344,140 328,146" fill="#0d0c09"/>
+
+      <!-- products → lots -->
+      <line x1="604" y1="140" x2="640" y2="140" stroke="#0d0c09" stroke-width="3"/>
+      <circle cx="604" cy="140" r="6" fill="#0d0c09"/>
+      <polygon points="632,134 648,140 632,146" fill="#0d0c09"/>
+
+      <!-- lots → virtual_codes -->
+      <line x1="896" y1="140" x2="932" y2="140" stroke="#0d0c09" stroke-width="3"/>
+      <circle cx="896" cy="140" r="6" fill="#0d0c09"/>
+      <polygon points="924,134 940,140 924,146" fill="#0d0c09"/>
+
+      <!-- virtual_codes → histories -->
+      <line x1="1210" y1="140" x2="1356" y2="140" stroke="#16a34a" stroke-width="3"/>
+      <circle cx="1210" cy="140" r="6" fill="#16a34a"/>
+      <polygon points="1348,134 1364,140 1348,146" fill="#16a34a"/>
+
+      <!-- ========== virtual_codes → shipment_details ========== -->
+      <path d="M 1076 250 L 1076 310 L 840 310 L 840 350" stroke="#2563eb" stroke-width="3" fill="none"/>
+      <circle cx="1076" cy="250" r="6" fill="#2563eb"/>
+      <polygon points="832,342 840,358 848,342" fill="#2563eb"/>
+
+      <!-- shipment_batches → shipment_details -->
+      <line x1="636" y1="430" x2="716" y2="430" stroke="#2563eb" stroke-width="3"/>
+      <circle cx="636" cy="430" r="6" fill="#2563eb"/>
+      <polygon points="708,424 724,430 708,436" fill="#2563eb"/>
+
+      <!-- ========== virtual_codes → treatment_details ========== -->
+      <path d="M 1040 250 L 1040 560 L 840 560 L 840 600" stroke="#16a34a" stroke-width="3" fill="none"/>
+      <circle cx="1040" cy="250" r="6" fill="#16a34a"/>
+      <polygon points="832,592 840,608 848,592" fill="#16a34a"/>
+
+      <!-- treatment_records → treatment_details -->
+      <line x1="636" y1="670" x2="716" y2="670" stroke="#16a34a" stroke-width="3"/>
+      <circle cx="636" cy="670" r="6" fill="#16a34a"/>
+      <polygon points="708,664 724,670 708,676" fill="#16a34a"/>
+
+      <!-- patients → treatment_records -->
+      <line x1="304" y1="650" x2="320" y2="650" stroke="#0d0c09" stroke-width="3"/>
+      <circle cx="304" cy="650" r="6" fill="#0d0c09"/>
+      <polygon points="312,644 328,650 312,656" fill="#0d0c09"/>
+
+      <!-- ========== 참조 관계 (점선) ========== -->
+      <!-- organizations → shipment_batches (from/to_org) -->
+      <path d="M 170 240 L 170 320 L 380 320 L 380 350" stroke="#94938c" stroke-width="2" stroke-dasharray="8,4" fill="none"/>
+
+      <!-- organizations → treatment_records (hospital_id) -->
+      <path d="M 220 240 L 220 570 L 380 570 L 380 600" stroke="#94938c" stroke-width="2" stroke-dasharray="8,4" fill="none"/>
+
+      <!-- histories → shipment_details (shipment_batch_id) -->
+      <path d="M 1356 310 L 1200 310 L 1200 390 L 950 390" stroke="#94938c" stroke-width="2" stroke-dasharray="6,4" fill="none"/>
+
+      <!-- histories → treatment_records (treatment_id) -->
+      <path d="M 1356 330 L 1160 330 L 1160 640 L 950 640" stroke="#94938c" stroke-width="2" stroke-dasharray="6,4" fill="none"/>
+    </svg>
+
+    <!-- ========== Row 1: 마스터 데이터 ========== -->
+
+    <!-- organizations: x=24, y=30, w=276 -->
+    <div class="table-box" style="left: 24px; top: 30px; width: 276px;">
+      <div class="table-header"><p style="margin:0;">organizations</p></div>
+      <div class="table-body">
+        <div class="table-row"><span class="field-name pk">🔑 id</span><span class="field-type">UUID</span></div>
+        <div class="table-row"><span class="field-name">type</span><span class="field-type">ENUM</span></div>
+        <div class="table-row"><span class="field-name">name</span><span class="field-type">VARCHAR</span></div>
+        <div class="table-row"><span class="field-name">email</span><span class="field-type">VARCHAR</span></div>
+        <div class="table-row"><span class="field-name">biz_number</span><span class="field-type">VARCHAR</span></div>
+        <div class="table-row"><span class="field-name">status</span><span class="field-type">ENUM</span></div>
+      </div>
+    </div>
+
+    <!-- products: x=336, y=30, w=268 -->
+    <div class="table-box" style="left: 336px; top: 30px; width: 268px;">
+      <div class="table-header"><p style="margin:0;">products</p></div>
+      <div class="table-body">
+        <div class="table-row"><span class="field-name pk">🔑 id</span><span class="field-type">UUID</span></div>
+        <div class="table-row"><span class="field-name fk">organization_id</span><span class="field-type">UUID</span></div>
+        <div class="table-row"><span class="field-name">name</span><span class="field-type">VARCHAR</span></div>
+        <div class="table-row"><span class="field-name">udi_di</span><span class="field-type">VARCHAR</span></div>
+        <div class="table-row"><span class="field-name">model_name</span><span class="field-type">VARCHAR</span></div>
+        <div class="table-row"><span class="field-name">is_active</span><span class="field-type">BOOL</span></div>
+      </div>
+    </div>
+
+    <!-- lots: x=640, y=30, w=256 -->
+    <div class="table-box" style="left: 640px; top: 30px; width: 256px;">
+      <div class="table-header"><p style="margin:0;">lots</p></div>
+      <div class="table-body">
+        <div class="table-row"><span class="field-name pk">🔑 id</span><span class="field-type">UUID</span></div>
+        <div class="table-row"><span class="field-name fk">product_id</span><span class="field-type">UUID</span></div>
+        <div class="table-row"><span class="field-name">lot_number</span><span class="field-type">VARCHAR</span></div>
+        <div class="table-row"><span class="field-name">quantity</span><span class="field-type">INT</span></div>
+        <div class="table-row"><span class="field-name">mfg_date</span><span class="field-type">DATE</span></div>
+        <div class="table-row"><span class="field-name">expiry_date</span><span class="field-type">DATE</span></div>
+      </div>
+    </div>
+
+    <!-- virtual_codes (핵심): x=932, y=30, w=278 -->
+    <div class="table-box theme-core" style="left: 932px; top: 30px; width: 278px;">
+      <div class="table-header"><p style="margin:0;">virtual_codes</p></div>
+      <div class="table-body">
+        <div class="table-row"><span class="field-name pk">🔑 id</span><span class="field-type">UUID</span></div>
+        <div class="table-row"><span class="field-name">code</span><span class="field-type">VARCHAR</span></div>
+        <div class="table-row"><span class="field-name fk">lot_id</span><span class="field-type">UUID</span></div>
+        <div class="table-row"><span class="field-name">status</span><span class="field-type">ENUM</span></div>
+        <div class="table-row"><span class="field-name">owner_type</span><span class="field-type">ENUM</span></div>
+        <div class="table-row"><span class="field-name">owner_id</span><span class="field-type">VARCHAR</span></div>
+      </div>
+    </div>
+
+    <!-- histories: x=1356, y=30, w=396 -->
+    <div class="table-box theme-history" style="left: 1356px; top: 30px; width: 396px;">
+      <div class="table-header"><p style="margin:0;">histories</p></div>
+      <div class="table-body">
+        <div class="table-row"><span class="field-name pk">🔑 id</span><span class="field-type">UUID</span></div>
+        <div class="table-row"><span class="field-name fk">virtual_code_id</span><span class="field-type">UUID</span></div>
+        <div class="table-row"><span class="field-name">action_type</span><span class="field-type">ENUM</span></div>
+        <div class="table-row"><span class="field-name">from_owner (type/id)</span><span class="field-type">ENUM/VAR</span></div>
+        <div class="table-row"><span class="field-name">to_owner (type/id)</span><span class="field-type">ENUM/VAR</span></div>
+        <div class="table-row"><span class="field-name fk">shipment_batch_id</span><span class="field-type">UUID</span></div>
+        <div class="table-row"><span class="field-name fk">treatment_id</span><span class="field-type">UUID</span></div>
+        <div class="table-row"><span class="field-name">created_at</span><span class="field-type">TIMESTAMP</span></div>
+      </div>
+    </div>
+
+    <!-- ========== Row 2: 출고 트랜잭션 ========== -->
+
+    <!-- shipment_batches: x=320, y=350, w=316 -->
+    <div class="table-box theme-shipment" style="left: 320px; top: 350px; width: 316px;">
+      <div class="table-header"><p style="margin:0;">shipment_batches</p></div>
+      <div class="table-body">
+        <div class="table-row"><span class="field-name pk">🔑 id</span><span class="field-type">UUID</span></div>
+        <div class="table-row"><span class="field-name fk">from_organization_id</span><span class="field-type">UUID</span></div>
+        <div class="table-row"><span class="field-name fk">to_organization_id</span><span class="field-type">UUID</span></div>
+        <div class="table-row"><span class="field-name">shipment_date</span><span class="field-type">TIMESTAMP</span></div>
+        <div class="table-row"><span class="field-name">is_return_batch</span><span class="field-type">BOOL</span></div>
+      </div>
+    </div>
+
+    <!-- shipment_details: x=716, y=350, w=234 -->
+    <div class="table-box theme-shipment" style="left: 716px; top: 350px; width: 234px;">
+      <div class="table-header"><p style="margin:0;">shipment_details</p></div>
+      <div class="table-body">
+        <div class="table-row"><span class="field-name pk">🔑 id</span><span class="field-type">UUID</span></div>
+        <div class="table-row"><span class="field-name fk">batch_id</span><span class="field-type">UUID</span></div>
+        <div class="table-row"><span class="field-name fk">code_id</span><span class="field-type">UUID</span></div>
+      </div>
+    </div>
+
+    <!-- ========== Row 3: 시술 트랜잭션 ========== -->
+
+    <!-- patients: x=24, y=600, w=280 -->
+    <div class="table-box" style="left: 24px; top: 600px; width: 280px;">
+      <div class="table-header"><p style="margin:0;">patients</p></div>
+      <div class="table-body">
+        <div class="table-row"><span class="field-name pk">🔑 phone (PK)</span><span class="field-type">VARCHAR</span></div>
+        <div class="table-row"><span class="field-name">created_at</span><span class="field-type">TIMESTAMP</span></div>
+      </div>
+    </div>
+
+    <!-- treatment_records: x=320, y=600, w=316 -->
+    <div class="table-box theme-treatment" style="left: 320px; top: 600px; width: 316px;">
+      <div class="table-header"><p style="margin:0;">treatment_records</p></div>
+      <div class="table-body">
+        <div class="table-row"><span class="field-name pk">🔑 id</span><span class="field-type">UUID</span></div>
+        <div class="table-row"><span class="field-name fk">hospital_id</span><span class="field-type">UUID</span></div>
+        <div class="table-row"><span class="field-name fk">patient_phone</span><span class="field-type">VARCHAR</span></div>
+        <div class="table-row"><span class="field-name">treatment_date</span><span class="field-type">DATE</span></div>
+      </div>
+    </div>
+
+    <!-- treatment_details: x=716, y=600, w=234 -->
+    <div class="table-box theme-treatment" style="left: 716px; top: 600px; width: 234px;">
+      <div class="table-header"><p style="margin:0;">treatment_details</p></div>
+      <div class="table-body">
+        <div class="table-row"><span class="field-name pk">🔑 id</span><span class="field-type">UUID</span></div>
+        <div class="table-row"><span class="field-name fk">treat_id</span><span class="field-type">UUID</span></div>
+        <div class="table-row"><span class="field-name fk">code_id</span><span class="field-type">UUID</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 범례 (흰 박스 아래, 배경색 영역) -->
+  <div style="display: flex; gap: 48px; margin-top: 16px; padding: 12px 32px; font-size: 18px; color: #4a4944;">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <span style="font-size: 20px;">🔑</span>
+      <span>Primary Key</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <span style="color: #2563eb; font-style: italic;">italic</span>
+      <span>Foreign Key</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <svg width="60" height="24">
+        <circle cx="8" cy="12" r="6" fill="#0d0c09"/>
+        <line x1="14" y1="12" x2="44" y2="12" stroke="#0d0c09" stroke-width="3"/>
+        <polygon points="38,6 52,12 38,18" fill="#0d0c09"/>
+      </svg>
+      <span>1:N 관계</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <svg width="48" height="24">
+        <line x1="4" y1="12" x2="44" y2="12" stroke="#94938c" stroke-width="3" stroke-dasharray="8,4"/>
+      </svg>
+      <span>참조</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <div style="width: 28px; height: 28px; background: #fef3c7; border: 4px solid #f59e0b; border-radius: 4px;"></div>
+      <span>핵심 테이블</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <div style="width: 28px; height: 28px; background: #dbeafe; border: 2px solid #2563eb; border-radius: 4px;"></div>
+      <span>출고</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <div style="width: 28px; height: 28px; background: #dcfce7; border: 2px solid #16a34a; border-radius: 4px;"></div>
+      <span>시술/이력</span>
+    </div>
+  </div>
+
+</body>
+</html>

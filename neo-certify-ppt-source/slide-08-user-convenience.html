@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body style="width: 1920px; height: 1080px; background: #fefaee; padding: 96px 140px; margin: 0; box-sizing: border-box;">
+
+  <!-- 제목 -->
+  <div style="margin-bottom: 48px;">
+    <p style="font-size: 36px; font-weight: 700; color: #0d0c09; margin: 0 0 16px 0;">05 핵심 로직 — 사용자 편의</p>
+    <div style="width: 160px; height: 2px; background: #0d0c09;"></div>
+  </div>
+
+  <!-- 3개 카드 -->
+  <div style="display: flex; gap: 40px; height: calc(100% - 160px);">
+
+    <!-- 카드 1: 자동 재고 선택 -->
+    <div style="flex: 1; background: #fff; border-radius: 16px; border: 2px solid #ccc9c0; padding: 40px; display: flex; flex-direction: column;">
+      <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 32px;">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+          <rect width="24" height="24" fill="#fff"/>
+          <rect x="3" y="3" width="7" height="7" rx="1" stroke="#0d0c09" stroke-width="1.5"/>
+          <rect x="14" y="3" width="7" height="7" rx="1" stroke="#0d0c09" stroke-width="1.5"/>
+          <rect x="3" y="14" width="7" height="7" rx="1" stroke="#0d0c09" stroke-width="1.5"/>
+          <path d="M17.5 14v7M14 17.5h7" stroke="#0d0c09" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <p style="font-size: 28px; font-weight: 700; color: #0d0c09; margin: 0;">자동 재고 선택</p>
+      </div>
+
+      <p style="font-size: 22px; color: #4a4944; margin: 0 0 32px 0; line-height: 1.6;">
+        사용자는 <strong>제품과 수량만 선택</strong>하면 시스템이 자동으로 최적의 재고를 선택합니다.
+      </p>
+
+      <!-- 플로우 시각화 -->
+      <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 16px;">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <div style="padding: 20px 28px; background: #f5f4ef; border-radius: 12px; text-align: center;">
+            <p style="font-size: 20px; color: #4a4944; margin: 0;">제품 선택</p>
+          </div>
+          <span style="color: #94938c; font-size: 24px;">→</span>
+          <div style="padding: 20px 28px; background: #f5f4ef; border-radius: 12px; text-align: center;">
+            <p style="font-size: 20px; color: #4a4944; margin: 0;">수량 입력</p>
+          </div>
+          <span style="color: #94938c; font-size: 24px;">→</span>
+          <div style="padding: 20px 28px; background: #0d0c09; border-radius: 12px; text-align: center;">
+            <p style="font-size: 20px; color: #fefaee; margin: 0;">자동 선택</p>
+          </div>
+        </div>
+
+        <!-- FIFO 설명 -->
+        <div style="margin-top: 24px; padding: 24px; background: #f5f4ef; border-radius: 12px;">
+          <p style="font-size: 20px; font-weight: 600; color: #0d0c09; margin: 0 0 12px 0;">FIFO 원칙</p>
+          <p style="font-size: 18px; color: #4a4944; margin: 0; line-height: 1.5;">
+            먼저 생산된 Lot부터 자동 선택<br/>
+            개별 코드 선택 불필요
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 카드 2: 장바구니 일괄 처리 -->
+    <div style="flex: 1; background: #fff; border-radius: 16px; border: 2px solid #ccc9c0; padding: 40px; display: flex; flex-direction: column;">
+      <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 32px;">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+          <rect width="24" height="24" fill="#fff"/>
+          <circle cx="9" cy="20" r="1.5" stroke="#0d0c09" stroke-width="1.5"/>
+          <circle cx="17" cy="20" r="1.5" stroke="#0d0c09" stroke-width="1.5"/>
+          <path d="M3 3h2l.4 2M5.4 5h13.2l-1.6 8H7L5.4 5z" stroke="#0d0c09" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M7 13l-.6 3h11.2" stroke="#0d0c09" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <p style="font-size: 28px; font-weight: 700; color: #0d0c09; margin: 0;">장바구니 일괄 처리</p>
+      </div>
+
+      <p style="font-size: 22px; color: #4a4944; margin: 0 0 32px 0; line-height: 1.6;">
+        여러 제품을 장바구니에 담고 <strong>한 번의 확인으로 완료</strong>합니다.
+      </p>
+
+      <!-- 단계 시각화 -->
+      <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 20px;">
+        <div style="display: flex; align-items: center; gap: 20px;">
+          <div style="width: 48px; height: 48px; background: #0d0c09; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+            <span style="font-size: 22px; color: #fefaee; font-weight: 600;">1</span>
+          </div>
+          <p style="font-size: 22px; color: #4a4944; margin: 0;">제품 A 담기</p>
+        </div>
+        <div style="display: flex; align-items: center; gap: 20px;">
+          <div style="width: 48px; height: 48px; background: #0d0c09; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+            <span style="font-size: 22px; color: #fefaee; font-weight: 600;">2</span>
+          </div>
+          <p style="font-size: 22px; color: #4a4944; margin: 0;">제품 B 담기</p>
+        </div>
+        <div style="display: flex; align-items: center; gap: 20px;">
+          <div style="width: 48px; height: 48px; background: #0d0c09; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+            <span style="font-size: 22px; color: #fefaee; font-weight: 600;">3</span>
+          </div>
+          <p style="font-size: 22px; color: #4a4944; margin: 0;">한 번에 처리 완료</p>
+        </div>
+
+        <div style="margin-top: 16px; padding: 20px 24px; background: #f5f4ef; border-radius: 12px;">
+          <p style="font-size: 18px; color: #4a4944; margin: 0;">
+            <strong>적용:</strong> 출고, 시술, 폐기, 반품
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 카드 3: 환자 인증 자동화 -->
+    <div style="flex: 1; background: #fff; border-radius: 16px; border: 2px solid #ccc9c0; padding: 40px; display: flex; flex-direction: column;">
+      <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 32px;">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+          <rect width="24" height="24" fill="#fff"/>
+          <rect x="5" y="2" width="14" height="20" rx="2" stroke="#0d0c09" stroke-width="1.5"/>
+          <path d="M9 5h6" stroke="#0d0c09" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="12" cy="18" r="1.5" fill="#0d0c09"/>
+          <path d="M9 10l2 2 4-4" stroke="#0d0c09" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <p style="font-size: 28px; font-weight: 700; color: #0d0c09; margin: 0;">환자 인증 자동화</p>
+      </div>
+
+      <p style="font-size: 22px; color: #4a4944; margin: 0 0 32px 0; line-height: 1.6;">
+        시술 등록 시 환자에게 <strong>정품 인증 알림이 자동 발송</strong>됩니다.
+      </p>
+
+      <!-- 플로우 시각화 -->
+      <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 24px;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="padding: 16px 20px; background: #f5f4ef; border-radius: 12px;">
+            <p style="font-size: 18px; color: #4a4944; margin: 0;">전화번호 입력</p>
+          </div>
+          <span style="color: #94938c; font-size: 20px;">→</span>
+          <div style="padding: 16px 20px; background: #f5f4ef; border-radius: 12px;">
+            <p style="font-size: 18px; color: #4a4944; margin: 0;">시술 등록</p>
+          </div>
+          <span style="color: #94938c; font-size: 20px;">→</span>
+          <div style="padding: 16px 20px; background: #0d0c09; border-radius: 12px;">
+            <p style="font-size: 18px; color: #fefaee; margin: 0;">알림 발송</p>
+          </div>
+        </div>
+
+        <!-- 전화번호 처리 -->
+        <div style="padding: 24px; background: #f5f4ef; border-radius: 12px;">
+          <p style="font-size: 20px; font-weight: 600; color: #0d0c09; margin: 0 0 16px 0;">전화번호 자동 처리</p>
+          <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 8px;">
+            <p style="font-size: 18px; color: #94938c; margin: 0; width: 72px;">입력</p>
+            <code style="font-size: 20px; background: #fff; padding: 8px 16px; border-radius: 8px;">010-1234-5678</code>
+          </div>
+          <div style="display: flex; align-items: center; gap: 16px;">
+            <p style="font-size: 18px; color: #94938c; margin: 0; width: 72px;">저장</p>
+            <code style="font-size: 20px; background: #fff; padding: 8px 16px; border-radius: 8px;">12345678</code>
+          </div>
+        </div>
+
+        <div style="padding: 16px 20px; background: #0d0c09; border-radius: 12px;">
+          <p style="font-size: 18px; color: #fefaee; margin: 0; text-align: center;">카카오 알림톡으로 정품 인증서 전송</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

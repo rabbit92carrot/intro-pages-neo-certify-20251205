@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .tech-badge {
+      font-size: 16px;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-family: 'Consolas', 'Monaco', monospace;
+    }
+    .tech-primary {
+      background: #0d0c09;
+      color: #fefaee;
+    }
+    .tech-secondary {
+      background: #4a4944;
+      color: #fefaee;
+    }
+    .tech-tertiary {
+      background: #f5f4ef;
+      color: #4a4944;
+      border: 1px solid #e0ddd4;
+    }
+    .arch-box {
+      padding: 20px 28px;
+      border-radius: 12px;
+      text-align: center;
+    }
+    .arch-label {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 0;
+    }
+    .arch-sub {
+      font-size: 13px;
+      color: #94938c;
+      margin: 4px 0 0 0;
+    }
+    .section-row {
+      display: flex;
+      padding: 20px 28px;
+      border-bottom: 1px solid #e5e7eb;
+      align-items: center;
+      gap: 20px;
+    }
+    .section-label {
+      width: 100px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #6b7280;
+    }
+    .badge-group {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      flex: 1;
+    }
+  </style>
+</head>
+<body style="width: 1920px; height: 1080px; background: #fefaee; padding: 56px 80px; margin: 0; box-sizing: border-box;">
+
+  <!-- 제목 -->
+  <div style="margin-bottom: 32px;">
+    <p style="font-size: 36px; font-weight: 700; color: #0d0c09; margin: 0 0 16px 0;">07 시스템 아키텍처</p>
+    <div style="width: 160px; height: 2px; background: #0d0c09;"></div>
+  </div>
+
+  <div style="display: flex; gap: 40px; height: calc(100% - 120px);">
+
+    <!-- 좌측: 기술 스택 -->
+    <div style="flex: 1; display: flex; flex-direction: column;">
+      <p style="font-size: 18px; font-weight: 600; color: #6b7280; margin: 0 0 16px 0; letter-spacing: 1px;">TECH STACK</p>
+
+      <div style="background: #fff; border-radius: 16px; border: 1px solid #e5e7eb; overflow: hidden; flex: 1;">
+
+        <!-- Frontend -->
+        <div class="section-row">
+          <div class="section-label">Frontend</div>
+          <div class="badge-group">
+            <code class="tech-badge tech-primary">Vite 7</code>
+            <code class="tech-badge tech-primary">React 19</code>
+            <code class="tech-badge tech-secondary">TypeScript 5</code>
+          </div>
+        </div>
+
+        <!-- Routing -->
+        <div class="section-row">
+          <div class="section-label">Routing</div>
+          <div class="badge-group">
+            <code class="tech-badge tech-tertiary">React Router 7</code>
+          </div>
+        </div>
+
+        <!-- Styling -->
+        <div class="section-row">
+          <div class="section-label">Styling</div>
+          <div class="badge-group">
+            <code class="tech-badge tech-tertiary">Tailwind CSS 4</code>
+            <code class="tech-badge tech-tertiary">shadcn/ui</code>
+            <code class="tech-badge tech-tertiary">Lucide Icons</code>
+          </div>
+        </div>
+
+        <!-- State -->
+        <div class="section-row">
+          <div class="section-label">State</div>
+          <div class="badge-group">
+            <code class="tech-badge tech-tertiary">TanStack Query 5</code>
+            <code class="tech-badge tech-tertiary">React Context</code>
+          </div>
+        </div>
+
+        <!-- Data Table -->
+        <div class="section-row">
+          <div class="section-label">Table</div>
+          <div class="badge-group">
+            <code class="tech-badge tech-tertiary">TanStack Table 8</code>
+          </div>
+        </div>
+
+        <!-- Forms -->
+        <div class="section-row">
+          <div class="section-label">Forms</div>
+          <div class="badge-group">
+            <code class="tech-badge tech-tertiary">react-hook-form</code>
+            <code class="tech-badge tech-tertiary">Zod 4</code>
+          </div>
+        </div>
+
+        <!-- Backend -->
+        <div class="section-row">
+          <div class="section-label">Backend</div>
+          <div class="badge-group">
+            <code class="tech-badge tech-primary">Supabase</code>
+            <code class="tech-badge tech-secondary">PostgreSQL 17</code>
+            <code class="tech-badge tech-secondary">Edge Functions</code>
+          </div>
+        </div>
+
+        <!-- Testing -->
+        <div class="section-row" style="border-bottom: none;">
+          <div class="section-label">Testing</div>
+          <div class="badge-group">
+            <code class="tech-badge tech-tertiary">Vitest</code>
+            <code class="tech-badge tech-tertiary">Playwright</code>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 우측: 아키텍처 다이어그램 + 배포 -->
+    <div style="flex: 1.3; display: flex; flex-direction: column; gap: 24px;">
+
+      <!-- 아키텍처 다이어그램 -->
+      <div style="flex: 1; display: flex; flex-direction: column;">
+        <p style="font-size: 18px; font-weight: 600; color: #6b7280; margin: 0 0 16px 0; letter-spacing: 1px;">ARCHITECTURE</p>
+
+        <div style="background: #fff; border-radius: 16px; border: 1px solid #e5e7eb; padding: 32px; flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 24px;">
+
+          <!-- 메인 흐름 -->
+          <div style="display: flex; align-items: center; justify-content: center; gap: 24px;">
+
+            <!-- Client -->
+            <div class="arch-box" style="background: #f5f4ef; border: 1px solid #e5e7eb;">
+              <p class="arch-label" style="color: #0d0c09;">Client</p>
+              <p class="arch-sub">Vite SPA</p>
+            </div>
+
+            <svg width="50" height="24" viewBox="0 0 50 24">
+              <path d="M0 12h40M40 6l10 6-10 6" stroke="#0d0c09" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+
+            <!-- Supabase Client -->
+            <div class="arch-box" style="background: #22c55e; border: none;">
+              <p class="arch-label" style="color: #fff;">Supabase SDK</p>
+              <p class="arch-sub" style="color: rgba(255,255,255,0.8);">@supabase/supabase-js</p>
+            </div>
+
+            <svg width="50" height="24" viewBox="0 0 50 24">
+              <path d="M0 12h40M40 6l10 6-10 6" stroke="#0d0c09" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+
+            <!-- Supabase -->
+            <div class="arch-box" style="background: #0d0c09;">
+              <p class="arch-label" style="color: #fefaee;">Supabase</p>
+              <p class="arch-sub" style="color: #94938c;">PostgreSQL + RLS</p>
+            </div>
+
+          </div>
+
+          <!-- Supabase 세부 기능 -->
+          <div style="display: flex; justify-content: center; gap: 16px; margin-top: 8px;">
+            <div style="padding: 12px 20px; background: #f0fdf4; border: 1px solid #22c55e; border-radius: 8px; text-align: center;">
+              <p style="font-size: 14px; font-weight: 600; color: #16a34a; margin: 0;">Auth</p>
+              <p style="font-size: 12px; color: #6b7280; margin: 2px 0 0 0;">JWT + RLS</p>
+            </div>
+            <div style="padding: 12px 20px; background: #f0fdf4; border: 1px solid #22c55e; border-radius: 8px; text-align: center;">
+              <p style="font-size: 14px; font-weight: 600; color: #16a34a; margin: 0;">Storage</p>
+              <p style="font-size: 12px; color: #6b7280; margin: 2px 0 0 0;">사업자등록증</p>
+            </div>
+            <div style="padding: 12px 20px; background: #f0fdf4; border: 1px solid #22c55e; border-radius: 8px; text-align: center;">
+              <p style="font-size: 14px; font-weight: 600; color: #16a34a; margin: 0;">Edge Functions</p>
+              <p style="font-size: 12px; color: #6b7280; margin: 2px 0 0 0;">KakaoTalk API</p>
+            </div>
+            <div style="padding: 12px 20px; background: #f0fdf4; border: 1px solid #22c55e; border-radius: 8px; text-align: center;">
+              <p style="font-size: 14px; font-weight: 600; color: #16a34a; margin: 0;">Realtime</p>
+              <p style="font-size: 12px; color: #6b7280; margin: 2px 0 0 0;">구독 (예정)</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 배포 환경 -->
+      <div>
+        <p style="font-size: 18px; font-weight: 600; color: #6b7280; margin: 0 0 16px 0; letter-spacing: 1px;">DEPLOYMENT</p>
+
+        <div style="background: #fff; border-radius: 16px; border: 1px solid #e5e7eb; padding: 24px; display: flex; align-items: center; gap: 12px;">
+          <div style="width: 12px; height: 12px; background: #22c55e; border-radius: 50%;"></div>
+          <p style="font-size: 16px; color: #374151; margin: 0;"><strong>Production:</strong></p>
+          <code style="font-size: 15px; color: #6b7280; background: #f3f4f6; padding: 4px 10px; border-radius: 4px;">neo-certify-20251205.vercel.app</code>
+          <span style="margin-left: 16px; padding: 4px 12px; background: #f0fdf4; color: #16a34a; border-radius: 6px; font-size: 13px; font-weight: 500;">Vercel</span>
+        </div>
+      </div>
+
+      <!-- 외부 연동 -->
+      <div>
+        <p style="font-size: 18px; font-weight: 600; color: #6b7280; margin: 0 0 16px 0; letter-spacing: 1px;">EXTERNAL SERVICES</p>
+
+        <div style="background: #fff; border-radius: 16px; border: 1px solid #e5e7eb; padding: 24px; display: flex; gap: 24px;">
+          <div style="display: flex; align-items: center; gap: 12px; padding: 12px 20px; background: #fef9c3; border: 1px solid #eab308; border-radius: 8px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" stroke="#ca8a04" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div>
+              <p style="font-size: 14px; font-weight: 600; color: #854d0e; margin: 0;">KakaoTalk 알림톡</p>
+              <p style="font-size: 12px; color: #a16207; margin: 2px 0 0 0;">정품 인증 · 회수 알림</p>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 12px; padding: 12px 20px; background: #f3f4f6; border: 1px solid #d1d5db; border-radius: 8px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="#6b7280" stroke-width="2"/>
+              <polyline points="22,6 12,13 2,6" stroke="#6b7280" stroke-width="2"/>
+            </svg>
+            <div>
+              <p style="font-size: 14px; font-weight: 600; color: #374151; margin: 0;">Supabase Email</p>
+              <p style="font-size: 12px; color: #6b7280; margin: 2px 0 0 0;">인증 · 비밀번호 재설정</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>

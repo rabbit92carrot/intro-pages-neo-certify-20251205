@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .role-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+    }
+    .role-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 24px;
+      border-radius: 16px;
+      margin-bottom: 24px;
+    }
+    .page-node {
+      padding: 12px 20px;
+      background: #fff;
+      border: 2px solid #e5e7eb;
+      border-radius: 10px;
+      font-size: 16px;
+      color: #374151;
+      margin: 6px 0;
+      min-width: 120px;
+      text-align: center;
+      transition: all 0.2s;
+    }
+    .page-node.highlight {
+      border-width: 3px;
+      font-weight: 600;
+    }
+    .connector {
+      width: 2px;
+      height: 16px;
+      background: #d1d5db;
+    }
+  </style>
+</head>
+<body style="width: 1920px; height: 1080px; background: #fefaee; padding: 64px 80px; margin: 0; box-sizing: border-box;">
+
+  <!-- 제목 -->
+  <div style="margin-bottom: 32px;">
+    <p style="font-size: 36px; font-weight: 700; color: #0d0c09; margin: 0 0 16px 0;">06 화면 구성 — 페이지 관계도</p>
+    <div style="width: 160px; height: 2px; background: #0d0c09;"></div>
+  </div>
+
+  <!-- 범례 -->
+  <div style="display: flex; gap: 32px; margin-bottom: 24px;">
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <div style="width: 20px; height: 20px; background: #0d0c09; border-radius: 4px;"></div>
+      <p style="font-size: 16px; color: #6b7280; margin: 0;">제조사</p>
+    </div>
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <div style="width: 20px; height: 20px; background: #2563eb; border-radius: 4px;"></div>
+      <p style="font-size: 16px; color: #6b7280; margin: 0;">유통사</p>
+    </div>
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <div style="width: 20px; height: 20px; background: #16a34a; border-radius: 4px;"></div>
+      <p style="font-size: 16px; color: #6b7280; margin: 0;">병원</p>
+    </div>
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <div style="width: 20px; height: 20px; background: #7c3aed; border-radius: 4px;"></div>
+      <p style="font-size: 16px; color: #6b7280; margin: 0;">관리자</p>
+    </div>
+    <div style="display: flex; align-items: center; gap: 10px; margin-left: 24px;">
+      <div style="padding: 4px 12px; border: 3px solid #22c55e; border-radius: 8px; font-size: 14px; color: #16a34a;">핵심</div>
+      <p style="font-size: 16px; color: #6b7280; margin: 0;">핵심 기능</p>
+    </div>
+  </div>
+
+  <!-- 4열 트리 구조 -->
+  <div style="display: flex; gap: 32px; height: calc(100% - 180px); background: #fff; border-radius: 24px; border: 2px solid #e5e7eb; padding: 40px;">
+
+    <!-- 제조사 -->
+    <div class="role-column">
+      <div class="role-header" style="background: #0d0c09;">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+          <rect x="2" y="14" width="8" height="8" rx="1" stroke="#fefaee" stroke-width="2"/>
+          <path d="M10 18L14 14V22H10V18Z" stroke="#fefaee" stroke-width="2"/>
+          <rect x="3" y="10" width="6" height="4" rx="1" stroke="#fefaee" stroke-width="2"/>
+          <path d="M6 6V10" stroke="#fefaee" stroke-width="2"/>
+          <circle cx="6" cy="4" r="2" stroke="#fefaee" stroke-width="2"/>
+        </svg>
+        <p style="font-size: 22px; font-weight: 700; color: #fefaee; margin: 0;">제조사</p>
+      </div>
+
+      <div class="page-node" style="border-color: #0d0c09; background: #f9fafb;">대시보드</div>
+      <div class="connector" style="background: #0d0c09;"></div>
+      <div class="page-node">제품 관리</div>
+      <div class="connector" style="background: #0d0c09;"></div>
+      <div class="page-node">생산 등록</div>
+      <div class="connector" style="background: #0d0c09;"></div>
+      <div class="page-node highlight" style="border-color: #22c55e; color: #16a34a;">출고</div>
+      <div class="connector" style="background: #0d0c09;"></div>
+      <div class="page-node">재고 조회</div>
+      <div class="connector" style="background: #0d0c09;"></div>
+      <div class="page-node">거래 이력</div>
+      <div class="connector" style="background: #0d0c09;"></div>
+      <div class="page-node" style="color: #9ca3af; border-color: #e5e7eb;">수신함</div>
+      <div class="connector" style="background: #d1d5db;"></div>
+      <div class="page-node" style="color: #9ca3af; border-color: #e5e7eb;">환경 설정</div>
+
+      <p style="font-size: 14px; color: #9ca3af; margin-top: 16px;">8개 메뉴</p>
+    </div>
+
+    <!-- 유통사 -->
+    <div class="role-column">
+      <div class="role-header" style="background: #2563eb;">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+          <rect x="2" y="8" width="12" height="10" rx="1" stroke="#fefaee" stroke-width="2"/>
+          <path d="M14 12h4l2 3v3h-6v-6z" stroke="#fefaee" stroke-width="2"/>
+          <circle cx="6" cy="18" r="2" stroke="#fefaee" stroke-width="2"/>
+          <circle cx="16" cy="18" r="2" stroke="#fefaee" stroke-width="2"/>
+        </svg>
+        <p style="font-size: 22px; font-weight: 700; color: #fefaee; margin: 0;">유통사</p>
+      </div>
+
+      <div class="page-node" style="border-color: #2563eb; background: #eff6ff;">대시보드</div>
+      <div class="connector" style="background: #2563eb;"></div>
+      <div class="page-node highlight" style="border-color: #22c55e; color: #16a34a;">출고</div>
+      <div class="connector" style="background: #2563eb;"></div>
+      <div class="page-node">재고 조회</div>
+      <div class="connector" style="background: #2563eb;"></div>
+      <div class="page-node">거래 이력</div>
+
+      <p style="font-size: 14px; color: #9ca3af; margin-top: auto;">4개 메뉴</p>
+      <p style="font-size: 13px; color: #6b7280; background: #f3f4f6; padding: 8px 16px; border-radius: 8px; margin-top: 8px;">가장 단순한 역할</p>
+    </div>
+
+    <!-- 병원 -->
+    <div class="role-column">
+      <div class="role-header" style="background: #16a34a;">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+          <rect x="4" y="6" width="16" height="16" rx="2" stroke="#fefaee" stroke-width="2"/>
+          <rect x="9" y="2" width="6" height="6" rx="1" stroke="#fefaee" stroke-width="2"/>
+          <path d="M12 3V7M10 5H14" stroke="#fefaee" stroke-width="2"/>
+          <rect x="10" y="17" width="4" height="5" rx="1" stroke="#fefaee" stroke-width="2"/>
+        </svg>
+        <p style="font-size: 22px; font-weight: 700; color: #fefaee; margin: 0;">병원</p>
+      </div>
+
+      <div class="page-node" style="border-color: #16a34a; background: #f0fdf4;">대시보드</div>
+      <div class="connector" style="background: #16a34a;"></div>
+      <div class="page-node highlight" style="border-color: #22c55e; color: #16a34a; background: #dcfce7;">시술 등록</div>
+      <div class="connector" style="background: #16a34a;"></div>
+      <div class="page-node">시술 이력</div>
+      <div class="connector" style="background: #16a34a;"></div>
+      <div class="page-node">폐기 등록</div>
+      <div class="connector" style="background: #16a34a;"></div>
+      <div class="page-node">재고 조회</div>
+      <div class="connector" style="background: #16a34a;"></div>
+      <div class="page-node">거래 이력</div>
+      <div class="connector" style="background: #d1d5db;"></div>
+      <div class="page-node" style="color: #9ca3af; border-color: #e5e7eb;">환경 설정</div>
+
+      <p style="font-size: 14px; color: #9ca3af; margin-top: 16px;">7개 메뉴</p>
+    </div>
+
+    <!-- 관리자 -->
+    <div class="role-column">
+      <div class="role-header" style="background: #7c3aed;">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+          <rect x="3" y="4" width="18" height="14" rx="2" stroke="#fefaee" stroke-width="2"/>
+          <path d="M3 14H21" stroke="#fefaee" stroke-width="2"/>
+          <path d="M10 18H14V21H10V18Z" stroke="#fefaee" stroke-width="2"/>
+          <path d="M7 21H17" stroke="#fefaee" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <p style="font-size: 22px; font-weight: 700; color: #fefaee; margin: 0;">관리자</p>
+      </div>
+
+      <div class="page-node" style="border-color: #7c3aed; background: #f5f3ff;">대시보드</div>
+      <div class="connector" style="background: #7c3aed;"></div>
+      <div class="page-node highlight" style="border-color: #7c3aed; color: #7c3aed;">조직 관리</div>
+      <div class="connector" style="background: #7c3aed;"></div>
+      <div class="page-node highlight" style="border-color: #7c3aed; color: #7c3aed;">가입 승인</div>
+      <div class="connector" style="background: #7c3aed;"></div>
+      <div class="page-node">전체 이력</div>
+      <div class="connector" style="background: #7c3aed;"></div>
+      <div class="page-node">회수 이력</div>
+      <div class="connector" style="background: #7c3aed;"></div>
+      <div class="page-node">알림 관리</div>
+      <div class="connector" style="background: #d1d5db;"></div>
+      <div class="page-node" style="color: #9ca3af; border-color: #e5e7eb;">수신함</div>
+
+      <p style="font-size: 14px; color: #9ca3af; margin-top: 16px;">8개 메뉴</p>
+    </div>
+
+  </div>
+
+</body>
+</html>

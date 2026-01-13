@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body style="width: 1920px; height: 1080px; background: #fefaee; padding: 96px 100px; margin: 0; box-sizing: border-box;">
+
+  <!-- 제목 -->
+  <div style="margin-bottom: 48px;">
+    <p style="font-size: 36px; font-weight: 700; color: #0d0c09; margin: 0 0 16px 0;">06 데이터 구조 — 핵심 엔티티</p>
+    <div style="width: 160px; height: 2px; background: #0d0c09;"></div>
+  </div>
+
+  <!-- 4개 카드 -->
+  <div style="display: flex; gap: 20px; height: calc(100% - 160px);">
+
+    <!-- 카드 1: 조직 -->
+    <div style="flex: 1; background: #fff; border-radius: 24px; border: 2px solid #ccc9c0; padding: 36px; display: flex; flex-direction: column;">
+      <div style="text-align: center; margin-bottom: 28px;">
+        <div style="width: 88px; height: 88px; background: #0d0c09; border-radius: 50%; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center;">
+          <span style="font-size: 36px;">🏢</span>
+        </div>
+        <p style="font-size: 28px; font-weight: 700; color: #0d0c09; margin: 0;">조직</p>
+        <p style="font-size: 20px; color: #94938c; margin: 8px 0 0 0;">organizations</p>
+      </div>
+
+      <div style="flex: 1;">
+        <p style="font-size: 22px; color: #4a4944; margin: 0 0 24px 0; line-height: 1.6; text-align: center;">
+          시스템을 사용하는<br/><strong>모든 참여자</strong>
+        </p>
+
+        <!-- 2x2 태그 그리드 (태그 내 한 줄 유지) -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div style="padding: 12px 16px; background: #f5f4ef; border-radius: 12px; text-align: center; white-space: nowrap;">
+            <p style="font-size: 18px; color: #4a4944; margin: 0;">🏭 제조사</p>
+          </div>
+          <div style="padding: 12px 16px; background: #f5f4ef; border-radius: 12px; text-align: center; white-space: nowrap;">
+            <p style="font-size: 18px; color: #4a4944; margin: 0;">🚚 유통사</p>
+          </div>
+          <div style="padding: 12px 16px; background: #f5f4ef; border-radius: 12px; text-align: center; white-space: nowrap;">
+            <p style="font-size: 18px; color: #4a4944; margin: 0;">🏥 병원</p>
+          </div>
+          <div style="padding: 12px 16px; background: #f5f4ef; border-radius: 12px; text-align: center; white-space: nowrap;">
+            <p style="font-size: 18px; color: #4a4944; margin: 0;">👤 관리자</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding: 20px; background: #f5f4ef; border-radius: 16px; text-align: center;">
+        <p style="font-size: 18px; color: #4a4944; margin: 0;"><strong>1개 조직</strong>이 <strong>여러 제품</strong> 등록</p>
+      </div>
+    </div>
+
+    <!-- 화살표 -->
+    <div style="display: flex; align-items: center;">
+      <svg width="36" height="36" viewBox="0 0 24 24">
+        <path d="M5 12h14M13 6l6 6-6 6" stroke="#0d0c09" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <!-- 카드 2: 제품 -->
+    <div style="flex: 1; background: #fff; border-radius: 24px; border: 2px solid #ccc9c0; padding: 36px; display: flex; flex-direction: column;">
+      <div style="text-align: center; margin-bottom: 28px;">
+        <div style="width: 88px; height: 88px; background: #0d0c09; border-radius: 50%; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center;">
+          <span style="font-size: 36px;">📦</span>
+        </div>
+        <p style="font-size: 28px; font-weight: 700; color: #0d0c09; margin: 0;">제품</p>
+        <p style="font-size: 20px; color: #94938c; margin: 8px 0 0 0;">products</p>
+      </div>
+
+      <div style="flex: 1;">
+        <p style="font-size: 22px; color: #4a4944; margin: 0 0 24px 0; line-height: 1.6; text-align: center;">
+          제조사가 등록한<br/><strong>제품 종류</strong>
+        </p>
+
+        <div style="padding: 20px; background: #f5f4ef; border-radius: 16px;">
+          <p style="font-size: 18px; color: #4a4944; margin: 0 0 8px 0;">포함 정보:</p>
+          <p style="font-size: 18px; color: #4a4944; margin: 0;">제품명, 모델명</p>
+          <p style="font-size: 18px; color: #4a4944; margin: 0;">UDI-DI (식별코드)</p>
+          <p style="font-size: 18px; color: #4a4944; margin: 0;">활성/비활성 상태</p>
+        </div>
+      </div>
+
+      <div style="padding: 20px; background: #f5f4ef; border-radius: 16px; text-align: center;">
+        <p style="font-size: 18px; color: #4a4944; margin: 0;"><strong>1개 제품</strong>이 <strong>여러 Lot</strong> 생산</p>
+      </div>
+    </div>
+
+    <!-- 화살표 -->
+    <div style="display: flex; align-items: center;">
+      <svg width="36" height="36" viewBox="0 0 24 24">
+        <path d="M5 12h14M13 6l6 6-6 6" stroke="#0d0c09" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <!-- 카드 3: 생산 Lot -->
+    <div style="flex: 1; background: #fff; border-radius: 24px; border: 2px solid #ccc9c0; padding: 36px; display: flex; flex-direction: column;">
+      <div style="text-align: center; margin-bottom: 28px;">
+        <div style="width: 88px; height: 88px; background: #0d0c09; border-radius: 50%; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center;">
+          <span style="font-size: 36px;">📋</span>
+        </div>
+        <p style="font-size: 28px; font-weight: 700; color: #0d0c09; margin: 0;">생산 Lot</p>
+        <p style="font-size: 20px; color: #94938c; margin: 8px 0 0 0;">lots</p>
+      </div>
+
+      <div style="flex: 1;">
+        <p style="font-size: 22px; color: #4a4944; margin: 0 0 24px 0; line-height: 1.6; text-align: center;">
+          한 번에 생산된<br/><strong>제품 묶음</strong>
+        </p>
+
+        <div style="padding: 20px; background: #f5f4ef; border-radius: 16px;">
+          <p style="font-size: 18px; color: #4a4944; margin: 0 0 8px 0;">포함 정보:</p>
+          <p style="font-size: 18px; color: #4a4944; margin: 0;">Lot 번호 (자동생성)</p>
+          <p style="font-size: 18px; color: #4a4944; margin: 0;">수량 (1~100,000)</p>
+          <p style="font-size: 18px; color: #4a4944; margin: 0;">생산일, 유효기한</p>
+        </div>
+      </div>
+
+      <div style="padding: 20px; background: #f5f4ef; border-radius: 16px; text-align: center;">
+        <p style="font-size: 18px; color: #4a4944; margin: 0;"><strong>1개 Lot</strong>이 <strong>여러 코드</strong> 생성</p>
+      </div>
+    </div>
+
+    <!-- 화살표 -->
+    <div style="display: flex; align-items: center;">
+      <svg width="36" height="36" viewBox="0 0 24 24">
+        <path d="M5 12h14M13 6l6 6-6 6" stroke="#0d0c09" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <!-- 카드 4: 가상 코드 -->
+    <div style="flex: 1; background: #fff; border-radius: 24px; border: 2px solid #ccc9c0; padding: 36px; display: flex; flex-direction: column;">
+      <div style="text-align: center; margin-bottom: 28px;">
+        <div style="width: 88px; height: 88px; background: #0d0c09; border-radius: 50%; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center;">
+          <span style="font-size: 36px;">🏷️</span>
+        </div>
+        <p style="font-size: 28px; font-weight: 700; color: #0d0c09; margin: 0;">가상 코드</p>
+        <p style="font-size: 20px; color: #94938c; margin: 8px 0 0 0;">virtual_codes</p>
+      </div>
+
+      <div style="flex: 1;">
+        <p style="font-size: 22px; color: #4a4944; margin: 0 0 24px 0; line-height: 1.6; text-align: center;">
+          개별 제품의<br/><strong>고유 식별자</strong>
+        </p>
+
+        <!-- 왼쪽 정렬된 상태 태그 -->
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="padding: 12px 20px; background: #dcfce7; border-radius: 12px;">
+            <p style="font-size: 18px; color: #166534; margin: 0;">🟢 IN_STOCK (재고)</p>
+          </div>
+          <div style="padding: 12px 20px; background: #dbeafe; border-radius: 12px;">
+            <p style="font-size: 18px; color: #1e40af; margin: 0;">🔵 USED (시술완료)</p>
+          </div>
+          <div style="padding: 12px 20px; background: #f3f4f6; border-radius: 12px;">
+            <p style="font-size: 18px; color: #4b5563; margin: 0;">⚫ DISPOSED (폐기)</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding: 20px; background: #0d0c09; border-radius: 16px; text-align: center;">
+        <p style="font-size: 18px; color: #fefaee; margin: 0;">Lot 생성 시 <strong>자동 생성</strong></p>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

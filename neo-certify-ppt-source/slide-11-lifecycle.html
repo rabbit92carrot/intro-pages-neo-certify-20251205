@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body style="width: 1920px; height: 1080px; background: #fefaee; padding: 80px 100px; margin: 0; box-sizing: border-box;">
+
+  <!-- 제목 -->
+  <div style="margin-bottom: 40px;">
+    <p style="font-size: 36px; font-weight: 700; color: #0d0c09; margin: 0 0 16px 0;">06 데이터 구조 — 제품 생애와 이력 기록</p>
+    <div style="width: 160px; height: 2px; background: #0d0c09;"></div>
+  </div>
+
+  <!-- 코드 예시 헤더 -->
+  <div style="display: flex; align-items: center; gap: 24px; margin-bottom: 32px;">
+    <div style="padding: 12px 24px; background: #0d0c09; border-radius: 12px;">
+      <p style="font-size: 22px; font-weight: 600; color: #fefaee; margin: 0; font-family: monospace;">NC-441B1EF9-9511</p>
+    </div>
+    <p style="font-size: 20px; color: #4a4944; margin: 0;">실제 코드의 생애 주기 추적 예시</p>
+  </div>
+
+  <!-- 타임라인 -->
+  <div style="background: #fff; border-radius: 24px; border: 2px solid #ccc9c0; padding: 40px 48px; margin-bottom: 32px;">
+
+    <!-- 타임라인 컨테이너 -->
+    <div style="position: relative;">
+
+      <!-- 가로선 -->
+      <div style="position: absolute; top: 48px; left: 80px; right: 80px; height: 6px; background: #e0ddd4;"></div>
+
+      <!-- 이벤트들 -->
+      <div style="display: flex; justify-content: space-between; position: relative;">
+
+        <!-- 1. PRODUCED -->
+        <div style="display: flex; flex-direction: column; align-items: center; width: 260px;">
+          <div style="width: 96px; height: 96px; background: #0d0c09; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 1;">
+            <span style="font-size: 36px;">🏭</span>
+          </div>
+          <div style="margin-top: 20px; text-align: center;">
+            <p style="font-size: 20px; font-weight: 700; color: #0d0c09; margin: 0;">PRODUCED</p>
+            <p style="font-size: 16px; color: #94938c; margin: 4px 0 0 0;">12/16 04:24</p>
+            <p style="font-size: 16px; color: #4a4944; margin: 8px 0 0 0;">테스트제조사</p>
+          </div>
+        </div>
+
+        <!-- 2. SHIPPED/RECEIVED (제조사→유통사) -->
+        <div style="display: flex; flex-direction: column; align-items: center; width: 260px;">
+          <div style="width: 96px; height: 96px; background: #0d0c09; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 1;">
+            <span style="font-size: 36px;">🚚</span>
+          </div>
+          <div style="margin-top: 20px; text-align: center;">
+            <p style="font-size: 20px; font-weight: 700; color: #0d0c09; margin: 0;">SHIPPED → RECEIVED</p>
+            <p style="font-size: 16px; color: #94938c; margin: 4px 0 0 0;">12/16 04:25</p>
+            <p style="font-size: 16px; color: #4a4944; margin: 8px 0 0 0;">제조사 → 유통사</p>
+          </div>
+        </div>
+
+        <!-- 3. SHIPPED/RECEIVED (유통사→병원) -->
+        <div style="display: flex; flex-direction: column; align-items: center; width: 260px;">
+          <div style="width: 96px; height: 96px; background: #0d0c09; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 1;">
+            <span style="font-size: 36px;">🏥</span>
+          </div>
+          <div style="margin-top: 20px; text-align: center;">
+            <p style="font-size: 20px; font-weight: 700; color: #0d0c09; margin: 0;">SHIPPED → RECEIVED</p>
+            <p style="font-size: 16px; color: #94938c; margin: 4px 0 0 0;">12/16 04:27</p>
+            <p style="font-size: 16px; color: #4a4944; margin: 8px 0 0 0;">유통사 → 병원</p>
+          </div>
+        </div>
+
+        <!-- 4. TREATED -->
+        <div style="display: flex; flex-direction: column; align-items: center; width: 260px;">
+          <div style="width: 96px; height: 96px; background: #166534; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 1;">
+            <span style="font-size: 36px; color: #fff;">✓</span>
+          </div>
+          <div style="margin-top: 20px; text-align: center;">
+            <p style="font-size: 20px; font-weight: 700; color: #166534; margin: 0;">TREATED</p>
+            <p style="font-size: 16px; color: #94938c; margin: 4px 0 0 0;">12/16 04:28</p>
+            <p style="font-size: 16px; color: #4a4944; margin: 8px 0 0 0;">병원 → 환자</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- 하단: 기록되는 테이블 설명 -->
+  <div style="display: flex; gap: 24px;">
+
+    <!-- histories 중앙 테이블 -->
+    <div style="flex: 1.2; background: #0d0c09; border-radius: 20px; padding: 28px 32px;">
+      <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px;">
+        <span style="font-size: 28px;">📊</span>
+        <p style="font-size: 24px; font-weight: 700; color: #fefaee; margin: 0;">histories</p>
+      </div>
+      <p style="font-size: 18px; color: #94938c; margin: 0 0 16px 0;">모든 상태 변경을 기록하는 중앙 이력 테이블</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+        <span style="font-size: 16px; background: #4a4944; color: #fefaee; padding: 6px 12px; border-radius: 6px;">virtual_code_id</span>
+        <span style="font-size: 16px; background: #4a4944; color: #fefaee; padding: 6px 12px; border-radius: 6px;">action_type</span>
+        <span style="font-size: 16px; background: #4a4944; color: #fefaee; padding: 6px 12px; border-radius: 6px;">from → to</span>
+        <span style="font-size: 16px; background: #4a4944; color: #fefaee; padding: 6px 12px; border-radius: 6px;">timestamp</span>
+      </div>
+    </div>
+
+    <!-- 트랜잭션 테이블들 -->
+    <div style="flex: 1.8; display: flex; flex-direction: column; gap: 16px;">
+      <p style="font-size: 18px; font-weight: 600; color: #94938c; margin: 0;">각 행위별 상세 기록 테이블</p>
+
+      <div style="display: flex; gap: 16px;">
+        <!-- 출고 -->
+        <div style="flex: 1; background: #fff; border: 2px solid #ccc9c0; border-radius: 16px; padding: 20px;">
+          <p style="font-size: 20px; font-weight: 600; color: #0d0c09; margin: 0 0 8px 0;">📦 출고</p>
+          <p style="font-size: 16px; color: #4a4944; margin: 0;">shipment_batches</p>
+          <p style="font-size: 16px; color: #94938c; margin: 0;">+ shipment_details</p>
+        </div>
+
+        <!-- 시술 -->
+        <div style="flex: 1; background: #fff; border: 2px solid #ccc9c0; border-radius: 16px; padding: 20px;">
+          <p style="font-size: 20px; font-weight: 600; color: #0d0c09; margin: 0 0 8px 0;">💉 시술</p>
+          <p style="font-size: 16px; color: #4a4944; margin: 0;">treatment_records</p>
+          <p style="font-size: 16px; color: #94938c; margin: 0;">+ treatment_details</p>
+        </div>
+
+        <!-- 폐기 -->
+        <div style="flex: 1; background: #fff; border: 2px solid #ccc9c0; border-radius: 16px; padding: 20px;">
+          <p style="font-size: 20px; font-weight: 600; color: #0d0c09; margin: 0 0 8px 0;">🗑️ 폐기</p>
+          <p style="font-size: 16px; color: #4a4944; margin: 0;">disposal_records</p>
+          <p style="font-size: 16px; color: #94938c; margin: 0;">+ disposal_details</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 하단 핵심 메시지 -->
+  <div style="margin-top: 24px; padding: 20px 28px; background: #f5f4ef; border-radius: 16px; text-align: center;">
+    <p style="font-size: 20px; color: #4a4944; margin: 0;">
+      <strong style="color: #0d0c09;">핵심:</strong> 하나의 코드에 대한 <strong>모든 이동과 상태 변경</strong>이 histories에 기록되어 <strong>완전한 추적</strong> 가능
+    </p>
+  </div>
+
+</body>
+</html>

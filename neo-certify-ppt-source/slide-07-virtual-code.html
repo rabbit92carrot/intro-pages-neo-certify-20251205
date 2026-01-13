@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body style="width: 1920px; height: 1080px; background: #fefaee; padding: 96px 140px; margin: 0; box-sizing: border-box;">
+
+  <!-- 제목 -->
+  <div style="margin-bottom: 48px;">
+    <p style="font-size: 36px; font-weight: 700; color: #0d0c09; margin: 0 0 16px 0;">04 가상 코드 라이프사이클</p>
+    <div style="width: 160px; height: 2px; background: #0d0c09;"></div>
+  </div>
+
+  <div style="display: flex; gap: 64px; height: calc(100% - 160px);">
+
+    <!-- 왼쪽: 상태 흐름 다이어그램 (SVG) -->
+    <div style="flex: 1.1; display: flex; flex-direction: column;">
+      <p style="font-size: 22px; font-weight: 600; color: #94938c; margin: 0 0 32px 0; letter-spacing: 2px;">STATUS FLOW</p>
+
+      <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
+        <svg width="680" height="600" viewBox="0 0 340 300">
+          <!-- 생산 박스 -->
+          <rect x="120" y="5" width="100" height="34" rx="6" fill="#0d0c09"/>
+          <text x="170" y="27" text-anchor="middle" font-size="12" font-weight="600" fill="#fefaee">생산</text>
+
+          <!-- 생산 → IN_STOCK 선 -->
+          <line x1="170" y1="39" x2="170" y2="58" stroke="#0d0c09" stroke-width="2"/>
+          <polygon points="170,66 164,56 176,56" fill="#0d0c09"/>
+
+          <!-- IN_STOCK 박스 -->
+          <rect x="105" y="68" width="130" height="46" rx="8" fill="#fff" stroke="#0d0c09" stroke-width="2"/>
+          <text x="170" y="88" text-anchor="middle" font-size="14" font-weight="700" fill="#0d0c09">IN_STOCK</text>
+          <text x="170" y="104" text-anchor="middle" font-size="9" fill="#94938c">재고 상태</text>
+
+          <!-- IN_STOCK → 분기점 -->
+          <line x1="170" y1="114" x2="170" y2="135" stroke="#0d0c09" stroke-width="2"/>
+
+          <!-- 분기점 (원) -->
+          <circle cx="170" cy="140" r="5" fill="#0d0c09"/>
+
+          <!-- 좌측 분기선 (출고) -->
+          <line x1="165" y1="140" x2="90" y2="140" stroke="#0d0c09" stroke-width="2"/>
+          <line x1="90" y1="140" x2="90" y2="175" stroke="#0d0c09" stroke-width="2"/>
+          <polygon points="90,183 84,173 96,173" fill="#0d0c09"/>
+
+          <!-- 출고 라벨 -->
+          <rect x="65" y="148" width="50" height="20" rx="4" fill="#f5f4ef"/>
+          <text x="90" y="162" text-anchor="middle" font-size="9" fill="#4a4944">출고</text>
+
+          <!-- IN_STOCK (소유자 변경) 박스 -->
+          <rect x="35" y="188" width="110" height="42" rx="8" fill="#fff" stroke="#0d0c09" stroke-width="2"/>
+          <text x="90" y="206" text-anchor="middle" font-size="12" font-weight="700" fill="#0d0c09">IN_STOCK</text>
+          <text x="90" y="220" text-anchor="middle" font-size="9" fill="#94938c">소유자 변경</text>
+
+          <!-- 순환 화살표 (출고 → 다시 IN_STOCK) -->
+          <path d="M 35 209 Q 15 209 15 140 Q 15 91 105 91" stroke="#0d0c09" stroke-width="1.5" fill="none" stroke-dasharray="4,2"/>
+          <polygon points="105,91 98,97 98,85" fill="#0d0c09"/>
+
+          <!-- 우측 분기선 (시술/폐기) -->
+          <line x1="175" y1="140" x2="250" y2="140" stroke="#0d0c09" stroke-width="2"/>
+          <line x1="250" y1="140" x2="250" y2="175" stroke="#0d0c09" stroke-width="2"/>
+          <polygon points="250,183 244,173 256,173" fill="#0d0c09"/>
+
+          <!-- 시술/폐기 라벨 -->
+          <rect x="205" y="148" width="36" height="20" rx="4" fill="#f5f4ef"/>
+          <text x="223" y="162" text-anchor="middle" font-size="9" fill="#4a4944">시술</text>
+          <rect x="248" y="148" width="36" height="20" rx="4" fill="#f5f4ef"/>
+          <text x="266" y="162" text-anchor="middle" font-size="9" fill="#4a4944">폐기</text>
+
+          <!-- USED / DISPOSED 분기 -->
+          <circle cx="250" cy="190" r="4" fill="#0d0c09"/>
+
+          <!-- USED 방향 -->
+          <line x1="246" y1="190" x2="200" y2="190" stroke="#0d0c09" stroke-width="2"/>
+          <line x1="200" y1="190" x2="200" y2="230" stroke="#0d0c09" stroke-width="2"/>
+          <polygon points="200,238 194,228 206,228" fill="#0d0c09"/>
+
+          <!-- DISPOSED 방향 -->
+          <line x1="254" y1="190" x2="290" y2="190" stroke="#0d0c09" stroke-width="2"/>
+          <line x1="290" y1="190" x2="290" y2="230" stroke="#0d0c09" stroke-width="2"/>
+          <polygon points="290,238 284,228 296,228" fill="#0d0c09"/>
+
+          <!-- USED 박스 -->
+          <rect x="160" y="243" width="80" height="34" rx="6" fill="#0d0c09"/>
+          <text x="200" y="265" text-anchor="middle" font-size="12" font-weight="600" fill="#fefaee">USED</text>
+
+          <!-- DISPOSED 박스 -->
+          <rect x="250" y="243" width="80" height="34" rx="6" fill="#0d0c09"/>
+          <text x="290" y="265" text-anchor="middle" font-size="11" font-weight="600" fill="#fefaee">DISPOSED</text>
+        </svg>
+      </div>
+    </div>
+
+    <!-- 오른쪽: 소유권 이전 및 코드 구조 -->
+    <div style="flex: 1; display: flex; flex-direction: column; gap: 32px;">
+
+      <!-- 소유권 이전 -->
+      <div style="background: #fff; border-radius: 16px; border: 2px solid #ccc9c0; padding: 32px;">
+        <p style="font-size: 22px; font-weight: 600; color: #94938c; margin: 0 0 24px 0; letter-spacing: 2px;">OWNERSHIP TRANSFER</p>
+
+        <div style="display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px;">
+          <div style="display: flex; align-items: center; gap: 16px;">
+            <div style="width: 12px; height: 12px; background: #0d0c09; border-radius: 50%;"></div>
+            <p style="font-size: 22px; color: #4a4944; margin: 0;"><strong>owner_type:</strong> ORGANIZATION | PATIENT</p>
+          </div>
+          <div style="display: flex; align-items: center; gap: 16px;">
+            <div style="width: 12px; height: 12px; background: #0d0c09; border-radius: 50%;"></div>
+            <p style="font-size: 22px; color: #4a4944; margin: 0;"><strong>owner_id:</strong> 조직 UUID 또는 환자 전화번호</p>
+          </div>
+        </div>
+
+        <div style="padding-top: 24px; border-top: 2px solid #e0ddd4;">
+          <div style="display: flex; gap: 12px; align-items: center;">
+            <div style="padding: 8px 20px; background: #f5f4ef; border-radius: 8px;">
+              <p style="font-size: 18px; color: #4a4944; margin: 0;">제조사</p>
+            </div>
+            <span style="font-size: 20px; color: #94938c;">→</span>
+            <div style="padding: 8px 20px; background: #f5f4ef; border-radius: 8px;">
+              <p style="font-size: 18px; color: #4a4944; margin: 0;">유통사</p>
+            </div>
+            <span style="font-size: 20px; color: #94938c;">→</span>
+            <div style="padding: 8px 20px; background: #f5f4ef; border-radius: 8px;">
+              <p style="font-size: 18px; color: #4a4944; margin: 0;">병원</p>
+            </div>
+            <span style="font-size: 20px; color: #94938c;">→</span>
+            <div style="padding: 8px 20px; background: #0d0c09; border-radius: 8px;">
+              <p style="font-size: 18px; color: #fefaee; margin: 0;">환자</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 가상 코드 구조 -->
+      <div style="flex: 1; background: #fff; border-radius: 16px; border: 2px solid #ccc9c0; padding: 32px;">
+        <p style="font-size: 22px; font-weight: 600; color: #94938c; margin: 0 0 32px 0; letter-spacing: 2px;">CODE STRUCTURE</p>
+
+        <!-- 코드 시각화 - 색상으로 구분 -->
+        <div style="display: flex; align-items: center; justify-content: center; gap: 0; margin-bottom: 40px; font-family: 'Courier New', monospace;">
+          <div style="padding: 20px 24px; background: #4a4944; border-radius: 12px 0 0 12px;">
+            <p style="font-size: 32px; font-weight: 700; color: #fff; margin: 0;">NC</p>
+          </div>
+          <div style="padding: 20px 8px; background: #f5f4ef;">
+            <p style="font-size: 32px; font-weight: 700; color: #94938c; margin: 0;">-</p>
+          </div>
+          <div style="padding: 20px 24px; background: #0d0c09;">
+            <p style="font-size: 32px; font-weight: 700; color: #fff; margin: 0;">A3F8B2C1</p>
+          </div>
+          <div style="padding: 20px 8px; background: #f5f4ef;">
+            <p style="font-size: 32px; font-weight: 700; color: #94938c; margin: 0;">-</p>
+          </div>
+          <div style="padding: 20px 24px; background: #94938c; border-radius: 0 12px 12px 0;">
+            <p style="font-size: 32px; font-weight: 700; color: #fff; margin: 0;">X7K2</p>
+          </div>
+        </div>
+
+        <!-- 범례 -->
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <div style="display: flex; align-items: center; gap: 24px;">
+            <div style="width: 32px; height: 32px; background: #4a4944; border-radius: 6px;"></div>
+            <p style="font-size: 22px; color: #4a4944; margin: 0;"><strong>NC</strong> — Prefix (Neo-Certify)</p>
+          </div>
+          <div style="display: flex; align-items: center; gap: 24px;">
+            <div style="width: 32px; height: 32px; background: #0d0c09; border-radius: 6px;"></div>
+            <p style="font-size: 22px; color: #4a4944; margin: 0;"><strong>8자리 HEX</strong> — 고유 식별자</p>
+          </div>
+          <div style="display: flex; align-items: center; gap: 24px;">
+            <div style="width: 32px; height: 32px; background: #94938c; border-radius: 6px;"></div>
+            <p style="font-size: 22px; color: #4a4944; margin: 0;"><strong>4자리</strong> — HMAC-SHA256 서명</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>
