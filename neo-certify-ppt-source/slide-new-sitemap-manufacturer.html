@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .slide-content {
+      padding: 40px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .slide-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .slide-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: #111827;
+      margin: 0 0 8px 0;
+    }
+    .slide-subtitle {
+      font-size: 14px;
+      color: #6b7280;
+      margin: 0;
+    }
+    .role-badge {
+      display: inline-block;
+      background: #22c55e;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    /* Site Map Container */
+    .sitemap-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    /* Root Page */
+    .root-page {
+      margin-bottom: 20px;
+    }
+
+    /* Page Grid */
+    .page-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      max-width: 900px;
+    }
+    .page-grid.row-2 {
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 16px;
+    }
+
+    /* Page Card */
+    .page-card {
+      width: 180px;
+      background: white;
+      border: 2px solid #e5e7eb;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      transition: all 0.2s;
+    }
+    .page-card:hover {
+      border-color: #22c55e;
+      box-shadow: 0 4px 12px rgba(34, 197, 94, 0.15);
+    }
+    .page-card.highlight {
+      border-color: #22c55e;
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+    }
+
+    .card-header {
+      background: #22c55e;
+      color: white;
+      padding: 8px 12px;
+      font-size: 11px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .card-header svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* Mini Mockup Styles */
+    .mini-mockup {
+      padding: 10px;
+      background: #f9fafb;
+      min-height: 90px;
+    }
+
+    .mock-header {
+      height: 8px;
+      background: #e5e7eb;
+      border-radius: 2px;
+      margin-bottom: 8px;
+      width: 60%;
+    }
+
+    .mock-table {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .mock-table-header {
+      height: 6px;
+      background: #f3f4f6;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    .mock-table-row {
+      height: 8px;
+      border-bottom: 1px solid #f3f4f6;
+      display: flex;
+      align-items: center;
+      padding: 0 4px;
+      gap: 4px;
+    }
+    .mock-table-row:last-child {
+      border-bottom: none;
+    }
+    .mock-cell {
+      height: 4px;
+      background: #e5e7eb;
+      border-radius: 1px;
+    }
+    .mock-cell.w1 { width: 20%; }
+    .mock-cell.w2 { width: 30%; }
+    .mock-cell.w3 { width: 15%; }
+
+    .mock-btn {
+      display: inline-block;
+      height: 10px;
+      background: #22c55e;
+      border-radius: 2px;
+      margin-top: 8px;
+    }
+    .mock-btn.primary { width: 50px; }
+    .mock-btn.secondary {
+      width: 40px;
+      background: #e5e7eb;
+      margin-left: 4px;
+    }
+
+    .mock-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+    .mock-stat-card {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 4px;
+      padding: 6px;
+      text-align: center;
+    }
+    .mock-stat-value {
+      height: 8px;
+      width: 60%;
+      background: #22c55e;
+      border-radius: 2px;
+      margin: 0 auto 4px;
+    }
+    .mock-stat-label {
+      height: 4px;
+      width: 80%;
+      background: #e5e7eb;
+      border-radius: 1px;
+      margin: 0 auto;
+    }
+
+    .mock-form {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 4px;
+      padding: 8px;
+    }
+    .mock-input {
+      height: 10px;
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+      border-radius: 2px;
+      margin-bottom: 6px;
+    }
+    .mock-input.half {
+      width: 48%;
+      display: inline-block;
+    }
+    .mock-input.half:last-child {
+      margin-left: 4%;
+    }
+
+    .mock-sidebar {
+      display: flex;
+      gap: 6px;
+    }
+    .mock-nav {
+      width: 30px;
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 4px;
+      padding: 4px;
+    }
+    .mock-nav-item {
+      height: 6px;
+      background: #e5e7eb;
+      border-radius: 2px;
+      margin-bottom: 4px;
+    }
+    .mock-nav-item.active {
+      background: #22c55e;
+    }
+    .mock-main {
+      flex: 1;
+    }
+
+    /* Connection Lines */
+    .connections {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .card-label {
+      font-size: 11px;
+      color: #374151;
+      text-align: center;
+      padding: 6px;
+      background: white;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <div class="slide-content">
+    <div class="slide-header">
+      <span class="role-badge">MANUFACTURER</span>
+      <h1 class="slide-title">제조사 페이지 구조</h1>
+      <p class="slide-subtitle">7개 주요 기능 페이지로 구성된 제조사 화면 구조</p>
+    </div>
+
+    <div class="sitemap-container">
+      <!-- Row 1: Main Pages -->
+      <div class="page-grid">
+        <!-- 제품 관리 -->
+        <div class="page-card highlight">
+          <div class="card-header">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+            </svg>
+            제품 관리
+          </div>
+          <div class="mini-mockup">
+            <div class="mock-header"></div>
+            <div class="mock-table">
+              <div class="mock-table-header"></div>
+              <div class="mock-table-row">
+                <span class="mock-cell w1"></span>
+                <span class="mock-cell w2"></span>
+                <span class="mock-cell w3"></span>
+              </div>
+              <div class="mock-table-row">
+                <span class="mock-cell w1"></span>
+                <span class="mock-cell w2"></span>
+                <span class="mock-cell w3"></span>
+              </div>
+              <div class="mock-table-row">
+                <span class="mock-cell w1"></span>
+                <span class="mock-cell w2"></span>
+                <span class="mock-cell w3"></span>
+              </div>
+            </div>
+            <div class="mock-btn primary"></div>
+          </div>
+          <div class="card-label">ProductListPage</div>
+        </div>
+
+        <!-- LOT 생산 -->
+        <div class="page-card highlight">
+          <div class="card-header">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+            </svg>
+            LOT 생산
+          </div>
+          <div class="mini-mockup">
+            <div class="mock-form">
+              <div class="mock-input"></div>
+              <div class="mock-input half"></div>
+              <div class="mock-input half"></div>
+              <div class="mock-input"></div>
+            </div>
+            <div class="mock-btn primary"></div>
+            <div class="mock-btn secondary"></div>
+          </div>
+          <div class="card-label">LotProductionPage</div>
+        </div>
+
+        <!-- 재고 관리 -->
+        <div class="page-card">
+          <div class="card-header">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 7v10c0 2 1 3 3 3h10c2 0 3-1 3-3V7c0-2-1-3-3-3H7c-2 0-3 1-3 3z"/>
+              <path d="M4 7l8 5 8-5"/>
+            </svg>
+            재고 관리
+          </div>
+          <div class="mini-mockup">
+            <div class="mock-stats">
+              <div class="mock-stat-card">
+                <div class="mock-stat-value"></div>
+                <div class="mock-stat-label"></div>
+              </div>
+              <div class="mock-stat-card">
+                <div class="mock-stat-value"></div>
+                <div class="mock-stat-label"></div>
+              </div>
+            </div>
+            <div class="mock-table">
+              <div class="mock-table-header"></div>
+              <div class="mock-table-row">
+                <span class="mock-cell w2"></span>
+                <span class="mock-cell w1"></span>
+              </div>
+              <div class="mock-table-row">
+                <span class="mock-cell w2"></span>
+                <span class="mock-cell w1"></span>
+              </div>
+            </div>
+          </div>
+          <div class="card-label">InventoryPage</div>
+        </div>
+
+        <!-- 출고 관리 -->
+        <div class="page-card highlight">
+          <div class="card-header">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+            출고 관리
+          </div>
+          <div class="mini-mockup">
+            <div class="mock-header"></div>
+            <div class="mock-form">
+              <div class="mock-input"></div>
+              <div class="mock-input"></div>
+            </div>
+            <div class="mock-table" style="margin-top: 6px;">
+              <div class="mock-table-header"></div>
+              <div class="mock-table-row">
+                <span class="mock-cell w2"></span>
+                <span class="mock-cell w1"></span>
+              </div>
+            </div>
+          </div>
+          <div class="card-label">ShipmentPage</div>
+        </div>
+      </div>
+
+      <!-- Row 2: Secondary Pages -->
+      <div class="page-grid row-2">
+        <!-- 거래 이력 -->
+        <div class="page-card">
+          <div class="card-header">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            거래 이력
+          </div>
+          <div class="mini-mockup">
+            <div class="mock-sidebar">
+              <div class="mock-nav">
+                <div class="mock-nav-item active"></div>
+                <div class="mock-nav-item"></div>
+                <div class="mock-nav-item"></div>
+              </div>
+              <div class="mock-main">
+                <div class="mock-table">
+                  <div class="mock-table-header"></div>
+                  <div class="mock-table-row">
+                    <span class="mock-cell w1"></span>
+                    <span class="mock-cell w2"></span>
+                  </div>
+                  <div class="mock-table-row">
+                    <span class="mock-cell w1"></span>
+                    <span class="mock-cell w2"></span>
+                  </div>
+                  <div class="mock-table-row">
+                    <span class="mock-cell w1"></span>
+                    <span class="mock-cell w2"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-label">TransactionHistoryPage</div>
+        </div>
+
+        <!-- 제품 상세 -->
+        <div class="page-card">
+          <div class="card-header">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+            제품 상세
+          </div>
+          <div class="mini-mockup">
+            <div class="mock-form">
+              <div class="mock-input"></div>
+              <div class="mock-input half"></div>
+              <div class="mock-input half"></div>
+              <div class="mock-input"></div>
+              <div class="mock-input half"></div>
+              <div class="mock-input half"></div>
+            </div>
+          </div>
+          <div class="card-label">ProductDetailPage</div>
+        </div>
+
+        <!-- 설정 -->
+        <div class="page-card">
+          <div class="card-header">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+            설정
+          </div>
+          <div class="mini-mockup">
+            <div class="mock-sidebar">
+              <div class="mock-nav">
+                <div class="mock-nav-item active"></div>
+                <div class="mock-nav-item"></div>
+                <div class="mock-nav-item"></div>
+                <div class="mock-nav-item"></div>
+              </div>
+              <div class="mock-main">
+                <div class="mock-form">
+                  <div class="mock-input"></div>
+                  <div class="mock-input"></div>
+                  <div class="mock-input"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-label">SettingsPage</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

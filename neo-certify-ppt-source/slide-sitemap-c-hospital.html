@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Page Card with Details */
+    .page-card {
+      width: 260px;
+      background: white;
+      border: 2px solid #e5e7eb;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .page-card.core {
+      border-color: #8b5cf6;
+      box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+    }
+    .card-header {
+      background: #8b5cf6;
+      color: white;
+      padding: 12px 14px;
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+    .card-header svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+    .card-header .core-badge {
+      background: white;
+      color: #8b5cf6;
+      padding: 2px 6px;
+      border-radius: 10px;
+      font-size: 9px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .crud-badges {
+      margin-left: auto;
+      display: flex;
+      gap: 3px;
+      flex-shrink: 0;
+    }
+    .crud-badge {
+      padding: 2px 5px;
+      border-radius: 3px;
+      font-size: 8px;
+      font-weight: 700;
+    }
+    .crud-badge.c { background: #10b981; color: white; }
+    .crud-badge.r { background: #3b82f6; color: white; }
+    .crud-badge.u { background: #f59e0b; color: white; }
+    .crud-badge.d { background: #ef4444; color: white; }
+    /* CRUD Legend */
+    .crud-legend {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 10px 16px;
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+    }
+    .crud-legend-title {
+      font-size: 11px;
+      color: #6b7280;
+      font-weight: 500;
+    }
+    .crud-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .crud-legend-item .crud-badge {
+      padding: 3px 6px;
+      font-size: 9px;
+    }
+    .crud-legend-item span:last-child {
+      font-size: 10px;
+      color: #374151;
+    }
+    /* Mini Mockup - Unified Height */
+    .mini-mockup {
+      padding: 14px;
+      background: #f5f3ff;
+      height: 100px;
+      box-sizing: border-box;
+    }
+    .mock-table {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .mock-table-header {
+      height: 10px;
+      background: #8b5cf6;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    .mock-table-row {
+      height: 12px;
+      border-bottom: 1px solid #f3f4f6;
+      display: flex;
+      align-items: center;
+      padding: 0 6px;
+      gap: 4px;
+    }
+    .mock-table-row:last-child {
+      border-bottom: none;
+    }
+    .mock-cell {
+      height: 6px;
+      background: #ede9fe;
+      border-radius: 2px;
+    }
+    .mock-cell.w1 { width: 20%; }
+    .mock-cell.w2 { width: 35%; }
+    .mock-cell.w3 { width: 25%; }
+    .mock-btn {
+      height: 14px;
+      width: 50px;
+      background: #8b5cf6;
+      border-radius: 3px;
+      margin-top: 8px;
+    }
+    /* Card Info Section */
+    .card-info {
+      padding: 12px 14px;
+      background: white;
+      border-top: 1px solid #e5e7eb;
+    }
+    .card-page-name {
+      font-size: 10px;
+      color: #6b7280;
+      margin: 0 0 4px 0;
+      font-family: monospace;
+    }
+    .card-description {
+      font-size: 12px;
+      color: #374151;
+      margin: 0 0 10px 0;
+      line-height: 1.4;
+    }
+    .card-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    .feature-tag {
+      font-size: 9px;
+      padding: 3px 8px;
+      background: #f3f4f6;
+      border-radius: 10px;
+      color: #374151;
+    }
+    .feature-tag.primary {
+      background: #8b5cf6;
+      color: white;
+    }
+    /* Sidebar Navigation */
+    .sidebar-nav {
+      background: white;
+      border: 2px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 16px;
+      width: 220px;
+    }
+    .sidebar-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: #8b5cf6;
+      margin: 0 0 12px 0;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #8b5cf6;
+    }
+    .sidebar-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 6px;
+      margin-bottom: 4px;
+      cursor: pointer;
+    }
+    .sidebar-item:hover {
+      background: #f5f3ff;
+    }
+    .sidebar-item.active {
+      background: #8b5cf6;
+      color: white;
+    }
+    .sidebar-item-icon {
+      width: 18px;
+      height: 18px;
+    }
+    .sidebar-item-text {
+      font-size: 11px;
+      font-weight: 500;
+    }
+    .sidebar-crud {
+      margin-left: auto;
+      display: flex;
+      gap: 2px;
+    }
+    .sidebar-crud .crud-badge {
+      padding: 1px 4px;
+      font-size: 7px;
+    }
+    /* Data Flow */
+    .data-flow {
+      background: white;
+      border: 2px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 16px 20px;
+    }
+    .flow-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: #8b5cf6;
+      margin: 0 0 12px 0;
+    }
+    .flow-items {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .flow-item {
+      padding: 6px 12px;
+      background: #f5f3ff;
+      border: 1px solid #ede9fe;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 500;
+      color: #374151;
+    }
+    .flow-item.active {
+      background: #8b5cf6;
+      border-color: #8b5cf6;
+      color: white;
+    }
+    .flow-arrow {
+      color: #c4b5fd;
+    }
+  </style>
+</head>
+<body style="width: 1920px; height: 1080px; background: #fefaee; padding: 48px 64px; margin: 0; box-sizing: border-box;">
+
+  <!-- Title Section -->
+  <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 20px;">
+    <div>
+      <p style="font-size: 36px; font-weight: 700; color: #0d0c09; margin: 0 0 12px 0;">06 화면 구성 — 병원 상세</p>
+      <div style="width: 160px; height: 2px; background: #8b5cf6;"></div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <!-- CRUD Legend -->
+      <div class="crud-legend">
+        <span class="crud-legend-title">CRUD 범례</span>
+        <div class="crud-legend-item"><span class="crud-badge c">C</span><span>Create</span></div>
+        <div class="crud-legend-item"><span class="crud-badge r">R</span><span>Read</span></div>
+        <div class="crud-legend-item"><span class="crud-badge u">U</span><span>Update</span></div>
+        <div class="crud-legend-item"><span class="crud-badge d">D</span><span>Delete</span></div>
+      </div>
+      <!-- Breadcrumb -->
+      <div style="display: flex; align-items: center; gap: 8px; padding: 8px 16px; background: white; border-radius: 8px; border: 1px solid #e5e7eb;">
+        <span style="font-size: 12px; color: #6b7280;">전체 페이지 맵</span>
+        <span style="font-size: 12px; color: #9ca3af;">→</span>
+        <span style="font-size: 12px; color: #8b5cf6; font-weight: 600;">병원 (7개 페이지)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Layout -->
+  <div style="display: flex; gap: 24px; height: calc(100% - 120px);">
+
+    <!-- Left Sidebar -->
+    <div class="sidebar-nav">
+      <p class="sidebar-title">병원 메뉴</p>
+      <div class="sidebar-item">
+        <svg class="sidebar-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12l-7-7-7 7M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/></svg>
+        <span class="sidebar-item-text">입고 내역</span>
+        <div class="sidebar-crud">
+          <span class="crud-badge r">R</span>
+        </div>
+      </div>
+      <div class="sidebar-item">
+        <svg class="sidebar-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7v10c0 2 1 3 3 3h10"/></svg>
+        <span class="sidebar-item-text">재고 관리</span>
+        <div class="sidebar-crud">
+          <span class="crud-badge r">R</span>
+        </div>
+      </div>
+      <div class="sidebar-item active">
+        <svg class="sidebar-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10"/></svg>
+        <span class="sidebar-item-text">시술 등록</span>
+        <div class="sidebar-crud">
+          <span class="crud-badge c">C</span>
+          <span class="crud-badge r">R</span>
+        </div>
+      </div>
+      <div class="sidebar-item">
+        <svg class="sidebar-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+        <span class="sidebar-item-text">리콜 관리</span>
+        <div class="sidebar-crud">
+          <span class="crud-badge r">R</span>
+          <span class="crud-badge u">U</span>
+        </div>
+      </div>
+      <div class="sidebar-item">
+        <svg class="sidebar-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"/></svg>
+        <span class="sidebar-item-text">반품 관리</span>
+        <div class="sidebar-crud">
+          <span class="crud-badge c">C</span>
+          <span class="crud-badge r">R</span>
+        </div>
+      </div>
+      <div class="sidebar-item">
+        <svg class="sidebar-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+        <span class="sidebar-item-text">폐기 관리</span>
+        <div class="sidebar-crud">
+          <span class="crud-badge c">C</span>
+          <span class="crud-badge r">R</span>
+        </div>
+      </div>
+      <div class="sidebar-item">
+        <svg class="sidebar-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg>
+        <span class="sidebar-item-text">거래 이력</span>
+        <div class="sidebar-crud">
+          <span class="crud-badge r">R</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+
+      <!-- Cards Row 1 - Core Features -->
+      <div style="display: flex; gap: 20px;">
+        <!-- 입고 내역 -->
+        <div class="page-card">
+          <div class="card-header">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 12l-7-7-7 7M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/>
+            </svg>
+            입고 내역
+            <div class="crud-badges">
+              <span class="crud-badge r">R</span>
+            </div>
+          </div>
+          <div class="mini-mockup">
+            <div class="mock-table">
+              <div class="mock-table-header"></div>
+              <div class="mock-table-row"><span class="mock-cell w1"></span><span class="mock-cell w2"></span><span class="mock-cell w3"></span></div>
+              <div class="mock-table-row"><span class="mock-cell w1"></span><span class="mock-cell w2"></span><span class="mock-cell w3"></span></div>
+              <div class="mock-table-row"><span class="mock-cell w1"></span><span class="mock-cell w2"></span><span class="mock-cell w3"></span></div>
+            </div>
+            <div class="mock-btn"></div>
+          </div>
+          <div class="card-info">
+            <p class="card-page-name">ReceivingHistoryPage</p>
+            <p class="card-description">유통사로부터 입고된 제품 내역 조회</p>
+            <div class="card-features">
+              <span class="feature-tag">입고 목록</span>
+              <span class="feature-tag">검수 확인</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 재고 관리 -->
+        <div class="page-card">
+          <div class="card-header">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 7v10c0 2 1 3 3 3h10c2 0 3-1 3-3V7c0-2-1-3-3-3H7c-2 0-3 1-3 3z"/>
+            </svg>
+            재고 관리
+            <div class="crud-badges">
+              <span class="crud-badge r">R</span>
+            </div>
+          </div>
+          <div class="mini-mockup">
+            <div class="mock-table">
+              <div class="mock-table-header"></div>
+              <div class="mock-table-row"><span class="mock-cell w1"></span><span class="mock-cell w2"></span><span class="mock-cell w3"></span></div>
+              <div class="mock-table-row"><span class="mock-cell w1"></span><span class="mock-cell w2"></span><span class="mock-cell w3"></span></div>
+              <div class="mock-table-row"><span class="mock-cell w1"></span><span class="mock-cell w2"></span><span class="mock-cell w3"></span></div>
+            </div>
+            <div class="mock-btn"></div>
+          </div>
+          <div class="card-info">
+            <p class="card-page-name">InventoryPage</p>
+            <p class="card-description">현재 보유 재고 현황 실시간 조회</p>
+            <div class="card-features">
+              <span class="feature-tag">재고 현황</span>
+              <span class="feature-tag">유효기간</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 시술 등록 -->
+        <div class="page-card core">
+          <div class="card-header">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2"/>
+            </svg>
+            시술 등록
+            <span class="core-badge">핵심</span>
+            <div class="crud-badges">
+              <span class="crud-badge c">C</span>
+              <span class="crud-badge r">R</span>
+            </div>
+          </div>
+          <div class="mini-mockup">
+            <div class="mock-table">
+              <div class="mock-table-header"></div>
+              <div class="mock-table-row"><span class="mock-cell w1"></span><span class="mock-cell w2"></span><span class="mock-cell w3"></span></div>
+              <div class="mock-table-row"><span class="mock-cell w1"></span><span class="mock-cell w2"></span><span class="mock-cell w3"></span></div>
+              <div class="mock-table-row"><span class="mock-cell w1"></span><span class="mock-cell w2"></span><span class="mock-cell w3"></span></div>
+            </div>
+            <div class="mock-btn"></div>
+          </div>
+          <div class="card-info">
+            <p class="card-page-name">ProcedurePage</p>
+            <p class="card-description">환자 시술 시 제품 사용 기록 등록</p>
+            <div class="card-features">
+              <span class="feature-tag primary">시술 기록</span>
+              <span class="feature-tag">환자 매칭</span>
+              <span class="feature-tag">스캔 등록</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 리콜 관리 -->
+        <div class="page-card core">
+          <div class="card-header">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+            </svg>
+            리콜 관리
+            <span class="core-badge">핵심</span>
+            <div class="crud-badges">
+              <span class="crud-badge r">R</span>
+              <span class="crud-badge u">U</span>
+            </div>
+          </div>
+          <div class="mini-mockup">
+            <div class="mock-table">
+              <div class="mock-table-header"></div>
+              <div class="mock-table-row"><span class="mock-cell w1"></span><span class="mock-cell w2"></span><span class="mock-cell w3"></span></div>
+              <div class="mock-table-row"><span class="mock-cell w1"></span><span class="mock-cell w2"></span><span class="mock-cell w3"></span></div>
+              <div class="mock-table-row"><span class="mock-cell w1"></span><span class="mock-cell w2"></span><span class="mock-cell w3"></span></div>
+            </div>
+            <div class="mock-btn"></div>
+          </div>
+          <div class="card-info">
+            <p class="card-page-name">RecallPage</p>
+            <p class="card-description">리콜 대상 제품 확인 및 처리 관리</p>
+            <div class="card-features">
+              <span class="feature-tag primary">리콜 조회</span>
+              <span class="feature-tag">환자 추적</span>
+              <span class="feature-tag">처리 완료</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cards Row 2 - Supporting Features -->
+      <div style="display: flex; gap: 20px;">
+        <!-- 반품 관리 -->
+        <div class="page-card">
+          <div class="card-header">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"/>
+            </svg>
+            반품 관리
+            <div class="crud-badges">
+              <span class="crud-badge c">C</span>
+              <span class="crud-badge r">R</span>
+            </div>
+          </div>
+          <div class="mini-mockup">
+            <div class="mock-table">
+              <div class="mock-table-header"></div>
+              <div class="mock-table-row"><span class="mock-cell w1"></span><span class="mock-cell w2"></span><span class="mock-cell w3"></span></div>
+              <div class="mock-table-row"><span class="mock-cell w1"></span><span class="mock-cell w2"></span><span class="mock-cell w3"></span></div>
+              <div class="mock-table-row"><span class="mock-cell w1"></span><span class="mock-cell w2"></span><span class="mock-cell w3"></span></div>
+            </div>
+            <div class="mock-btn"></div>
+          </div>
+          <div class="card-info">
+            <p class="card-page-name">ReturnPage</p>
+            <p class="card-description">불량/미사용 제품 반품 요청 등록</p>
+            <div class="card-features">
+              <span class="feature-tag">반품 요청</span>
+              <span class="feature-tag">사유 입력</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 폐기 관리 -->
+        <div class="page-card">
+          <div class="card-header">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+            </svg>
+            폐기 관리
+            <div class="crud-badges">
+              <span class="crud-badge c">C</span>
+              <span class="crud-badge r">R</span>
+            </div>
+          </div>
+          <div class="mini-mockup">
+            <div class="mock-table">
+              <div class="mock-table-header"></div>
+              <div class="mock-table-row"><span class="mock-cell w1"></span><span class="mock-cell w2"></span><span class="mock-cell w3"></span></div>
+              <div class="mock-table-row"><span class="mock-cell w1"></span><span class="mock-cell w2"></span><span class="mock-cell w3"></span></div>
+              <div class="mock-table-row"><span class="mock-cell w1"></span><span class="mock-cell w2"></span><span class="mock-cell w3"></span></div>
+            </div>
+            <div class="mock-btn"></div>
+          </div>
+          <div class="card-info">
+            <p class="card-page-name">DisposalPage</p>
+            <p class="card-description">유효기간 만료/손상 제품 폐기 기록</p>
+            <div class="card-features">
+              <span class="feature-tag">폐기 등록</span>
+              <span class="feature-tag">사유 기록</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 거래 이력 -->
+        <div class="page-card">
+          <div class="card-header">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            거래 이력
+            <div class="crud-badges">
+              <span class="crud-badge r">R</span>
+            </div>
+          </div>
+          <div class="mini-mockup">
+            <div class="mock-table">
+              <div class="mock-table-header"></div>
+              <div class="mock-table-row"><span class="mock-cell w1"></span><span class="mock-cell w2"></span><span class="mock-cell w3"></span></div>
+              <div class="mock-table-row"><span class="mock-cell w1"></span><span class="mock-cell w2"></span><span class="mock-cell w3"></span></div>
+              <div class="mock-table-row"><span class="mock-cell w1"></span><span class="mock-cell w2"></span><span class="mock-cell w3"></span></div>
+            </div>
+            <div class="mock-btn"></div>
+          </div>
+          <div class="card-info">
+            <p class="card-page-name">TransactionHistoryPage</p>
+            <p class="card-description">모든 입출고/시술 내역 조회 및 필터</p>
+            <div class="card-features">
+              <span class="feature-tag">이력 조회</span>
+              <span class="feature-tag">기간 필터</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Data Flow Diagram -->
+      <div class="data-flow" style="margin-top: auto;">
+        <p class="flow-title">병원 핵심 워크플로우</p>
+        <div class="flow-items">
+          <div style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: #f3f4f6; border-radius: 8px;">
+            <span style="font-size: 11px; color: #6b7280;">입력:</span>
+            <span style="font-size: 11px; font-weight: 600; color: #0d0c09;">유통사로부터 입고</span>
+          </div>
+          <svg class="flow-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <div class="flow-item">1. 입고 확인</div>
+          <svg class="flow-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <div class="flow-item">2. 재고 보관</div>
+          <svg class="flow-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <div class="flow-item active">3. 시술 사용</div>
+          <svg class="flow-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <div class="flow-item">4. 이력 기록</div>
+          <div style="flex: 1;"></div>
+          <div style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: #fef3c7; border-radius: 8px;">
+            <span style="font-size: 11px; color: #92400e;">최종:</span>
+            <span style="font-size: 11px; font-weight: 600; color: #92400e;">제품 생애주기 종료</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
